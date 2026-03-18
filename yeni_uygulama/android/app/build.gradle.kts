@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.adet_dongusu"
+    namespace = "com.example.lunora"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -23,7 +23,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.adet_dongusu"
+        applicationId = "com.example.lunora"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         // Use a lower minSdk to support older Android devices (API 21+).

@@ -1,4 +1,4 @@
-package com.example.adet_dongusu
+package com.example.lunora
 
 import io.flutter.embedding.android.FlutterActivity
 
