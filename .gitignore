@@ -1,0 +1,20 @@
+# Flutter SDK ve harici klasörler
+flutter/
+.venv/
+build/
+__pycache__/
+*.lock
+*.pyc
+*.exe
+*.bat
+*.log
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+.cache/
+.idea/
+*.iml
+
+# Sadece uygulama kodunu ekle
+# yeni_uygulama/, my_app/, backend/ klasörleri hariç tutulmasın
