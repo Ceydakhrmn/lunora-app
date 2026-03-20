@@ -19,10 +19,10 @@ class _BelirtiEklemeSayfasiState extends State<BelirtiEklemeSayfasi> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Bugün Nasıl Hissediyorsun?", 
-          style: GoogleFonts.quicksand(color: const Color(0xFF6D5D6E), fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.transparent,
+          style: GoogleFonts.quicksand(color: Colors.pink, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.pink.shade50,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Color(0xFF6D5D6E)),
+        iconTheme: const IconThemeData(color: Colors.pink),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -35,10 +35,10 @@ class _BelirtiEklemeSayfasiState extends State<BelirtiEklemeSayfasi> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildMoodIcon("😊", "Mutlu"),
-                _buildMoodIcon("😔", "Üzgün"),
-                _buildMoodIcon("😠", "Gergin"),
-                _buildMoodIcon("😴", "Yorgun"),
+                _buildMoodIcon("😊", "Mutlu", Colors.pink),
+                _buildMoodIcon("😔", "Üzgün", Colors.pink),
+                _buildMoodIcon("😠", "Gergin", Colors.pink),
+                _buildMoodIcon("😴", "Yorgun", Colors.pink),
               ],
             ),
             
@@ -75,7 +75,7 @@ class _BelirtiEklemeSayfasiState extends State<BelirtiEklemeSayfasi> {
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFB19CD9),
+                  backgroundColor: Colors.pink,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 ),
                 child: Text("Kaydet", style: GoogleFonts.quicksand(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
@@ -88,7 +88,7 @@ class _BelirtiEklemeSayfasiState extends State<BelirtiEklemeSayfasi> {
   }
 
   // Yardımcı Widget: Mod İkonu
-  Widget _buildMoodIcon(String emoji, String label) {
+  Widget _buildMoodIcon(String emoji, String label, Color mainColor) {
     bool isSelected = selectedMood == label;
     return GestureDetector(
       onTap: () => setState(() => selectedMood = label),
@@ -97,9 +97,9 @@ class _BelirtiEklemeSayfasiState extends State<BelirtiEklemeSayfasi> {
           Container(
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: isSelected ? const Color(0xFFB19CD9).withValues(alpha: 0.2) : Colors.grey.shade50,
+              color: isSelected ? mainColor.withOpacity(0.2) : Colors.pink.shade50,
               shape: BoxShape.circle,
-              border: Border.all(color: isSelected ? const Color(0xFFB19CD9) : Colors.transparent, width: 2),
+              border: Border.all(color: isSelected ? mainColor : Colors.transparent, width: 2),
             ),
             child: Text(emoji, style: const TextStyle(fontSize: 30)),
           ),
@@ -125,10 +125,10 @@ class _BelirtiEklemeSayfasiState extends State<BelirtiEklemeSayfasi> {
           }
         });
       },
-      selectedColor: const Color(0xFFFBC2EB).withValues(alpha: 0.3),
-      checkmarkColor: const Color(0xFF6D5D6E),
-      labelStyle: GoogleFonts.quicksand(color: const Color(0xFF6D5D6E)),
-      backgroundColor: Colors.grey.shade100,
+      selectedColor: Colors.pink.shade100,
+      checkmarkColor: Colors.pink,
+      labelStyle: GoogleFonts.quicksand(color: Colors.pink),
+      backgroundColor: Colors.pink.shade50,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
   }

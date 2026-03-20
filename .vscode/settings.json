@@ -26,7 +26,7 @@
   "files.exclude": {
     "flutter": true
   },
-  "java.configuration.updateBuildConfiguration": "never",
+    "java.configuration.updateBuildConfiguration": "disabled",
   "java.autobuild.enabled": false,
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

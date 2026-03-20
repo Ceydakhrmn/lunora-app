@@ -78,6 +78,9 @@ unlinked_spec.ds
 **/ios/**/*.perspectivev3
 **/ios/**/*sync/
 **/ios/**/.sconsign.dblite
+# Gizli anahtar dosyaları
+android/google-services.json
+ios/Runner/GoogleService-Info.plist
 **/ios/**/.tags*
 **/ios/**/.vagrant/
 **/ios/**/DerivedData/

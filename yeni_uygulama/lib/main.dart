@@ -726,7 +726,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final Widget exercisesTab = ListView(
       children: [
         Card(
-          color: Colors.yellow.shade50,
+          color: Colors.pink.shade50,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -785,7 +785,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         const SizedBox(height: 24),
         Card(
-          color: Colors.cyan.shade50,
+          color: Colors.pink.shade50,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -817,7 +817,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton(
                       onPressed: _incrementWater,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.teal,
+                        backgroundColor: Colors.pink,
                       ),
                       child: Text(
                         l10n.addGlass,
@@ -837,7 +837,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         const SizedBox(height: 24),
         Card(
-          color: Colors.green.shade50,
+          color: Colors.pink.shade50,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -873,7 +873,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ? _stopBreathing
                           : _startBreathing,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
+                        backgroundColor: Colors.pink,
                       ),
                       child: Text(
                         _breathingActive ? l10n.stop : l10n.start,
