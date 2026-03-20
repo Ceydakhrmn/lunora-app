@@ -9,7 +9,7 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
-  String get appTitle => 'Adet Döngüsü Takip Uygulaması';
+  String get appTitle => 'Lunora';
 
   @override
   String get appSubtitle => 'Menstrüal döngünüzü takip edin';
@@ -93,7 +93,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tired => 'yorgun 😴';
 
   @override
-  String get overviewTab => 'Adet Takip';
+  String get overviewTab => 'Lunora';
 
   @override
   String get notesTab => 'Egzersiz';

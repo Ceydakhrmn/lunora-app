@@ -46,8 +46,8 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBOqyY9LmnjAfpVOva5ruocb5O8fwxxfDc',
     appId: '1:475085184976:android:ecfedcfb9df3fc3b4ce3d5',
     messagingSenderId: '475085184976',
-    projectId: 'adet-dongusu',
-    storageBucket: 'adet-dongusu.firebasestorage.app',
+    projectId: 'lunora',
+    storageBucket: 'lunora.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
