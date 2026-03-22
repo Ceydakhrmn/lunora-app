@@ -128,7 +128,7 @@ Translation file: `lib/l10n/app_tr.arb` (Turkish)
 ```json
 {
   "@@locale": "tr",
-  "appTitle": "Adet Döngüsü Takip Uygulaması",
+  "appTitle": "Adet Takip",
   "calendar": "Takvim (tahmini döngüler)",
   "save": "Kaydet",
   "mood": "Ruh Hali"

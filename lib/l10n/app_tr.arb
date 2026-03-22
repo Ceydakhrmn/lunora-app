@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "appTitle": "Lunora",
+  "appTitle": "Adet Takip",
   "appSubtitle": "Menstrüal döngünüzü takip edin",
   "calendar": "Takvim (tahmini döngüler)",
   "cycleStartDate": "Döngü Başlangıç Tarihi",
@@ -28,7 +28,7 @@
   "sad": "üzgün 😢",
   "stressed": "stresli 😰",
   "tired": "yorgun 😴",
-  "overviewTab": "Lunora",
+  "overviewTab": "Adet Takip",
   "notesTab": "Egzersiz",
   "waterReminder": "Su içme hatırlatıcısı",
   "waterGoal": "Hedef",
