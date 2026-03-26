@@ -1,9 +1,3 @@
-// =============================================
-// providers/cycle_provider.dart
-// Uygulama genelinde state yönetimi
-// Değişiklikler otomatik olarak UI'a yansır
-// =============================================
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/cycle_model.dart';
@@ -23,7 +17,6 @@ class CycleProvider extends ChangeNotifier {
     _loadPrefs();
   }
 
-  // ---- Getter'lar ----
   DateTime get focusedMonth => _focusedMonth;
   DateTime? get selectedDay => _selectedDay;
   int get cycleLength => _cycleLength;
@@ -35,7 +28,6 @@ class CycleProvider extends ChangeNotifier {
         periodLength: _periodLength,
       );
 
-  // ---- Ay navigasyonu ----
   void previousMonth() {
     _focusedMonth = DateTime(_focusedMonth.year, _focusedMonth.month - 1);
     notifyListeners();
@@ -46,20 +38,17 @@ class CycleProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ---- Gün seçimi ----
   void selectDay(DateTime day) {
     _selectedDay = day;
     notifyListeners();
   }
 
-  // ---- Regl başlat ----
   void startPeriod(DateTime date) {
     _cycleStart = date;
     _savePrefs();
     notifyListeners();
   }
 
-  // ---- Döngü ayarları ----
   void updateCycleLength(int value) {
     _cycleLength = value;
     _savePrefs();
@@ -72,10 +61,8 @@ class CycleProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ---- Faz sorgulama ----
   DayPhase phaseOf(DateTime date) => cycle.phaseOf(date);
 
-  // ---- SharedPreferences ----
   Future<void> _loadPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     final startMs = prefs.getInt('cycleStart');

@@ -45,7 +45,7 @@ class DayCell extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w500,
               color: isOtherMonth
-                  ? Colors.grey.withValues(alpha: 0.4)
+                  ? Colors.grey.withOpacity(0.4)
                   : fg,
             ),
           ),

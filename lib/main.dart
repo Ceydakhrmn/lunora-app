@@ -7,11 +7,19 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'gen_l10n/app_localizations.dart';
 import 'screens/ai_chat_screen.dart';
+import 'package:provider/provider.dart';
+import 'screens/home_screen.dart' as calendar;
+import 'providers/cycle_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('tr');
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CycleProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -898,7 +906,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ? AiChatScreen(contextSummary: _buildAiContext(l10n), showAppBar: false)
         : Padding(
             padding: const EdgeInsets.all(16.0),
-            child: _selectedTabIndex == 0 ? overviewTab : exercisesTab,
+            child: _selectedTabIndex == 0 ? const calendar.HomeScreen() : exercisesTab,
           );
 
     return Scaffold(
