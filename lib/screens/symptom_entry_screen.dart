@@ -86,6 +86,7 @@ class _BelirtiEklemeSayfasiState extends State<BelirtiEklemeSayfasi> {
               child: ElevatedButton(
                 onPressed: () {
                   // Veritabanına kaydetme işlemi buraya gelecek
+                  if (!context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text("Belirtilerin başarıyla kaydedildi!"),
