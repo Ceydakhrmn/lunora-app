@@ -34,7 +34,11 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF7C3AED),
+          brightness: Brightness.light,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF5F0FF),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -922,10 +926,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 0, elevation: 0, backgroundColor: Colors.white),
+      appBar: AppBar(toolbarHeight: 0, elevation: 0, backgroundColor: const Color(0xFFF5F0FF)),
+      backgroundColor: const Color(0xFFF5F0FF),
       body: body,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTabIndex,
+        backgroundColor: Colors.white,
+        selectedItemColor: const Color(0xFF7C3AED),
+        unselectedItemColor: Colors.grey.shade400,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
         onTap: (index) {
           setState(() {
             _selectedTabIndex = index;
@@ -938,21 +949,129 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.dashboard_outlined),
-            label: l10n.overviewTab,
+            icon: const Icon(Icons.calendar_month_outlined),
+            activeIcon: const Icon(Icons.calendar_month),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.note_alt_outlined),
-            label: l10n.notesTab,
+            icon: _RunningIcon(active: _selectedTabIndex == 1),
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.chat_bubble_outline),
-            label: l10n.horuTab,
+            activeIcon: const Icon(Icons.chat_bubble),
+            label: '',
           ),
         ],
       ),
     );
   }
+}
+
+// ── Koşan adam animasyonlu ikon ──
+class _RunningIcon extends StatefulWidget {
+  final bool active;
+  const _RunningIcon({required this.active});
+
+  @override
+  State<_RunningIcon> createState() => _RunningIconState();
+}
+
+class _RunningIconState extends State<_RunningIcon>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _ctrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    if (widget.active) _ctrl.repeat(reverse: true);
+    // active değilse duruk kalır
+  }
+
+  @override
+  void didUpdateWidget(_RunningIcon old) {
+    super.didUpdateWidget(old);
+    if (widget.active && !_ctrl.isAnimating) {
+      _ctrl.repeat(reverse: true);
+    } else if (!widget.active && _ctrl.isAnimating) {
+      _ctrl.stop();
+      _ctrl.value = 0;
+    }
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _ctrl,
+      builder: (_, __) => CustomPaint(
+        size: const Size(24, 24),
+        painter: _RunnerPainter(
+          t: _ctrl.value,
+          color: widget.active
+              ? const Color(0xFF7C3AED)
+              : Colors.grey.shade600,
+        ),
+      ),
+    );
+  }
+}
+
+class _RunnerPainter extends CustomPainter {
+  final double t;
+  final Color color;
+  _RunnerPainter({required this.t, required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p = Paint()
+      ..color = color
+      ..strokeWidth = 2.0
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.stroke;
+
+    final cx = size.width / 2;
+    final s = math.sin(t * math.pi); // 0→1→0
+
+    // Baş
+    canvas.drawCircle(Offset(cx + 2, 3), 3, Paint()..color = color);
+
+    // Gövde
+    canvas.drawLine(Offset(cx + 2, 6), Offset(cx, 14), p);
+
+    // Sol kol (öne)
+    canvas.drawLine(
+      Offset(cx + 2, 8),
+      Offset(cx - 4 + s * 6, 12 - s * 2),
+      p,
+    );
+    // Sağ kol (arkaya)
+    canvas.drawLine(
+      Offset(cx + 2, 8),
+      Offset(cx + 6 - s * 6, 12 + s * 2),
+      p,
+    );
+
+    // Sol bacak (öne)
+    canvas.drawLine(Offset(cx, 14), Offset(cx - 3 + s * 5, 19), p);
+    canvas.drawLine(Offset(cx - 3 + s * 5, 19), Offset(cx - 2 + s * 3, 24), p);
+
+    // Sağ bacak (arkaya)
+    canvas.drawLine(Offset(cx, 14), Offset(cx + 3 - s * 5, 19), p);
+    canvas.drawLine(Offset(cx + 3 - s * 5, 19), Offset(cx + 4 - s * 3, 24), p);
+  }
+
+  @override
+  bool shouldRepaint(_RunnerPainter old) => old.t != t || old.color != color;
 }
 
 class _DashedCirclePainter extends CustomPainter {
