@@ -9,201 +9,369 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'Menstruationszyklus-Tracker';
+  String get appTitle => 'Lunora';
 
   @override
-  String get appSubtitle => 'Verfolgen Sie Ihren Menstruationszyklus';
+  String get appSubtitle => 'Verfolge deinen Zyklus, teile und vernetze dich';
 
   @override
-  String get calendar => 'Kalender (vorhergesagte Zyklen)';
+  String get calendarTab => 'Kalender';
 
   @override
-  String get cycleStartDate => 'Zyklus-Startdatum';
+  String get exerciseTab => 'Übung';
 
   @override
-  String get cycleDays => 'Zyklus Länge (Tage)';
+  String get socialTab => 'Sozial';
 
   @override
-  String get statistics => 'Statistiken';
+  String get profileTab => 'Profil';
 
   @override
-  String get registeredCycles => 'Registrierte Zyklen';
+  String get loginTitle => 'Willkommen';
 
   @override
-  String get averageLength => 'Durchschnittliche Länge';
+  String get loginSubtitle => 'Melde dich an, um fortzufahren';
 
   @override
-  String get regularity => 'Regelmäßigkeit';
+  String get registerTitle => 'Konto erstellen';
 
   @override
-  String get calculate => 'Berechnen';
+  String get registerSubtitle => 'Registriere dich und tritt der Community bei';
 
   @override
-  String get result => 'Ergebnis';
+  String get emailLabel => 'Email';
 
   @override
-  String get cycleSeparator => ':';
+  String get passwordLabel => 'Passwort';
 
   @override
-  String get nextCycle => 'Nächster Zyklus';
+  String get confirmPasswordLabel => 'Passwort (bestätigen)';
 
   @override
-  String get tapToSelect => 'Zum Auswählen des Datums tippen';
+  String get usernameLabel => 'Benutzername';
 
   @override
-  String get mood => 'Stimmung';
+  String get displayNameLabel => 'Anzeigename';
 
   @override
-  String get symptoms => 'Symptome & Notizen';
+  String get loginButton => 'ANMELDEN';
 
   @override
-  String get typeSymptoms => 'Geben Sie Ihre Symptome oder Notizen ein...';
+  String get registerButton => 'REGISTRIEREN';
 
   @override
-  String get save => 'Speichern';
+  String get loginWithGoogle => 'Mit Google fortfahren';
 
   @override
-  String get saved => 'Stimmung & Notizen gespeichert ✅';
+  String get forgotPassword => 'Passwort vergessen';
 
   @override
-  String get pleaseSelectDate => 'Bitte wählen Sie ein Datum!';
+  String get noAccountYet => 'Noch kein Konto?';
 
   @override
-  String get pleaseEnterValidNumber => 'Bitte geben Sie eine gültige Zahl ein!';
+  String get alreadyHaveAccount => 'Schon ein Konto?';
 
   @override
-  String get selected => 'Ausgewählt';
+  String get signUpLink => 'Registrieren';
 
   @override
-  String get happy => 'glücklich 😄';
+  String get signInLink => 'Anmelden';
 
   @override
-  String get energetic => 'energisch 🤩';
+  String get passwordsDontMatch => 'Passwörter stimmen nicht überein';
 
   @override
-  String get normal => 'normal 😐';
+  String get passwordTooShort => 'Passwort muss mindestens 6 Zeichen lang sein';
 
   @override
-  String get sad => 'traurig 😢';
+  String get emailInvalid => 'Gib eine gültige Email ein';
 
   @override
-  String get stressed => 'gestresst 😰';
+  String get emailRequired => 'Email ist erforderlich';
 
   @override
-  String get tired => 'müde 😴';
+  String get passwordRequired => 'Passwort ist erforderlich';
 
   @override
-  String get overviewTab => 'Start';
+  String get usernameTaken => 'Dieser Benutzername ist vergeben';
 
   @override
-  String get notesTab => 'Übungen';
+  String get usernameInvalid => 'Ungültiger Benutzername';
 
   @override
-  String get waterReminder => 'Wasser-Erinnerung';
+  String get verifyEmailTitle => 'Email bestätigen';
 
   @override
-  String get waterGoal => 'Ziel';
+  String get verifyEmailSubtitle => 'Fast fertig';
 
   @override
-  String get glasses => 'Gläser';
+  String get verifyEmailBody =>
+      'Wir haben dir einen Bestätigungslink gesendet. Bitte prüfe dein Postfach.';
 
   @override
-  String get addGlass => '1 Glas hinzufügen';
+  String get verifyEmailPolling =>
+      'Du wirst automatisch fortgesetzt, sobald verifiziert.';
 
   @override
-  String get reset => 'Zurücksetzen';
+  String get verifyEmailSent => 'Bestätigungs-Email gesendet';
 
   @override
-  String get breathingTitle => 'Atemübung';
+  String get verifiedButton => 'ICH HABE VERIFIZIERT';
 
   @override
-  String get breathingSubtitle =>
-      '4-4-4 Rhythmus: 4 s einatmen, 4 s halten, 4 s ausatmen';
+  String get resendVerification => 'Email erneut senden';
 
   @override
-  String get breathingReady => 'Bereit';
+  String get forgotPasswordTitle => 'Passwort vergessen';
 
   @override
-  String get breatheIn => 'Einatmen';
+  String get forgotPasswordSubtitle => 'Wir senden dir einen Reset-Link';
 
   @override
-  String get breatheHold => 'Halten';
+  String get sendResetLink => 'RESET-LINK SENDEN';
 
   @override
-  String get breatheOut => 'Ausatmen';
+  String get resetLinkSent => 'Link gesendet';
 
   @override
-  String get seconds => 'Sek';
+  String get backToLogin => 'ZURÜCK ZUR ANMELDUNG';
 
   @override
-  String get start => 'Start';
+  String get socialLatest => 'Neueste';
 
   @override
-  String get stop => 'Stopp';
+  String get socialPopular => 'Beliebt';
 
   @override
-  String get restart => 'Neustart';
+  String get newPost => 'Neuer Beitrag';
 
   @override
-  String get aiAssistant => 'hörü';
+  String get editPost => 'Beitrag bearbeiten';
 
   @override
-  String get aiAssistantSubtitle =>
-      'Chatte mit hörü für kurze, unterstützende Hinweise';
+  String get postHint => 'Was denkst du?';
 
   @override
-  String get typeMessage => 'Nachricht schreiben...';
+  String get postAnonymously => 'Anonym posten';
 
   @override
-  String get sendMessage => 'Senden';
+  String get postAnonymouslyHint => 'Dein Name erscheint nicht im Feed';
 
   @override
-  String get getAdvice => 'Kurzen Rat erhalten';
+  String get share => 'TEILEN';
 
   @override
-  String get aiRequestFailed => 'AI-Anfrage fehlgeschlagen';
+  String get saveChanges => 'SPEICHERN';
 
   @override
-  String get adviceNeedsInput =>
-      'Gib eine Zusammenfassung oder Nachricht für einen kurzen Rat ein';
+  String get emptyPostError => 'Leere Beiträge sind nicht erlaubt';
 
   @override
-  String get horuTab => 'hörü';
+  String get profanityDetected => 'Inhalt verstößt gegen die Richtlinien';
 
   @override
-  String get chatTitle => 'Chat';
+  String get noPostsYet => 'Noch keine Beiträge';
 
   @override
-  String get groupChat => 'Group Chat';
+  String get anonymousUser => 'Anonym';
 
   @override
-  String get privateChats => 'Private Messages';
+  String get editedLabel => 'bearbeitet';
 
   @override
-  String get groupChatDesc => 'Chat with the community, share experiences';
+  String get deletePostTitle => 'Beitrag löschen';
 
   @override
-  String get joinGroupChat => 'Join Group Chat';
+  String get deletePostConfirm => 'Diesen Beitrag wirklich löschen?';
 
   @override
-  String get noUsersFound => 'No other users yet';
+  String get commentsTitle => 'Kommentare';
 
   @override
-  String get error => 'Error';
+  String get writeComment => 'Kommentar schreiben...';
 
   @override
-  String get noMessages => 'No messages yet. Send the first one!';
+  String get reply => 'Antworten';
 
   @override
-  String get noMessagesYet => 'No messages yet';
+  String replyingTo(String username) {
+    return 'Antwort an $username';
+  }
 
   @override
-  String get startConversation =>
-      'Send the first message to start the conversation';
+  String get noComments => 'Noch keine Kommentare. Sei der Erste!';
 
   @override
-  String get typeGroupMessage => 'Message everyone...';
+  String get deleteCommentTitle => 'Kommentar löschen';
 
   @override
-  String get chatsTab => 'Chat';
+  String get deleteCommentConfirm => 'Diesen Kommentar wirklich löschen?';
+
+  @override
+  String get reportPost => 'Melden';
+
+  @override
+  String get reportTitle => 'Melden';
+
+  @override
+  String get reportReasonHint => 'Wähle einen Grund';
+
+  @override
+  String get reportReasonSpam => 'Spam';
+
+  @override
+  String get reportReasonHarassment => 'Belästigung';
+
+  @override
+  String get reportReasonInappropriate => 'Unangemessen';
+
+  @override
+  String get reportReasonHate => 'Hassrede';
+
+  @override
+  String get reportReasonOther => 'Sonstiges';
+
+  @override
+  String get reportDescription => 'Beschreibung (optional)';
+
+  @override
+  String get reportThanks => 'Meldung erhalten, danke';
+
+  @override
+  String get reportAlreadyExists => 'Du hast das bereits gemeldet';
+
+  @override
+  String get profileEdit => 'Profil bearbeiten';
+
+  @override
+  String get profileSettings => 'Einstellungen';
+
+  @override
+  String get profileLogout => 'Abmelden';
+
+  @override
+  String get confirmLogoutTitle => 'Abmelden';
+
+  @override
+  String get confirmLogoutMsg => 'Möchtest du dich wirklich abmelden?';
+
+  @override
+  String get cancelAction => 'Abbrechen';
+
+  @override
+  String get myPosts => 'Meine Beiträge';
+
+  @override
+  String get statsPosts => 'Beiträge';
+
+  @override
+  String get statsLikes => 'Likes';
+
+  @override
+  String get noMyPosts => 'Du hast noch keine Beiträge';
+
+  @override
+  String get dangerZone => 'Gefahrenzone';
+
+  @override
+  String get deleteAccount => 'KONTO LÖSCHEN';
+
+  @override
+  String get deleteAccountConfirm =>
+      'Dies kann nicht rückgängig gemacht werden. Alle deine Daten werden gelöscht. Fortfahren?';
+
+  @override
+  String get changePassword => 'Passwort ändern (optional)';
+
+  @override
+  String get currentPasswordLabel => 'Aktuelles Passwort';
+
+  @override
+  String get newPasswordLabel => 'Neues Passwort';
+
+  @override
+  String get changesSaved => 'Änderungen gespeichert';
+
+  @override
+  String get settingsTitle => 'Einstellungen';
+
+  @override
+  String get generalSettings => 'Allgemein';
+
+  @override
+  String get appPurpose => 'App-Zweck';
+
+  @override
+  String get modePeriodTrack => 'Zyklus-Tracking';
+
+  @override
+  String get modePeriodTrackDesc => 'Verfolge deinen Menstruationszyklus';
+
+  @override
+  String get modePregnancy => 'Schwangerschaft';
+
+  @override
+  String get modePregnancyDesc => 'Verfolge deine Schwangerschaft';
+
+  @override
+  String get modeTryConceive => 'Kinderwunsch';
+
+  @override
+  String get modeTryConceiveDesc => 'Fruchtbare Tage verfolgen';
+
+  @override
+  String get notificationsSection => 'Benachrichtigungen';
+
+  @override
+  String get notifCommentOnPost => 'Kommentar zu meinem Beitrag';
+
+  @override
+  String get notifCommentOnPostDesc =>
+      'Benachrichtigen, wenn jemand kommentiert';
+
+  @override
+  String get notifPeriodStart => 'Periode begonnen';
+
+  @override
+  String get notifPeriodStartDesc =>
+      'Erinnere mich, wenn meine Periode fällig ist';
+
+  @override
+  String get notifPeriodEnd => 'Periode beendet';
+
+  @override
+  String get notifPeriodEndDesc => 'Erinnere mich am Ende';
+
+  @override
+  String get notifExerciseReminder => 'Trainingserinnerung';
+
+  @override
+  String get notifExerciseReminderDesc => 'Zweimal pro Woche';
+
+  @override
+  String get themeSection => 'Design';
+
+  @override
+  String get themeLight => 'Hell';
+
+  @override
+  String get themeDark => 'Dunkel';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get cycleSection => 'Zyklus';
+
+  @override
+  String get cycleLengthLabel => 'Durchschnittliche Zykluslänge';
+
+  @override
+  String get periodLengthLabel => 'Periodenlänge';
+
+  @override
+  String get errorGeneric => 'Etwas ist schief gelaufen';
+
+  @override
+  String get tryAgain => 'Erneut versuchen';
 }

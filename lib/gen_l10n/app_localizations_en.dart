@@ -9,199 +9,369 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Period Cycle Tracker';
+  String get appTitle => 'Lunora';
 
   @override
-  String get appSubtitle => 'Track your menstrual cycle';
+  String get appSubtitle => 'Track your cycle, share and connect';
 
   @override
-  String get calendar => 'Calendar (predicted cycles)';
+  String get calendarTab => 'Calendar';
 
   @override
-  String get cycleStartDate => 'Cycle Start Date';
+  String get exerciseTab => 'Exercise';
 
   @override
-  String get cycleDays => 'Cycle Length (days)';
+  String get socialTab => 'Social';
 
   @override
-  String get statistics => 'Statistics';
+  String get profileTab => 'Profile';
 
   @override
-  String get registeredCycles => 'Registered Cycles';
+  String get loginTitle => 'Welcome';
 
   @override
-  String get averageLength => 'Average Length';
+  String get loginSubtitle => 'Sign in to continue';
 
   @override
-  String get regularity => 'Regularity';
+  String get registerTitle => 'Create account';
 
   @override
-  String get calculate => 'Calculate';
+  String get registerSubtitle => 'Sign up to join the community';
 
   @override
-  String get result => 'Result';
+  String get emailLabel => 'Email';
 
   @override
-  String get cycleSeparator => ':';
+  String get passwordLabel => 'Password';
 
   @override
-  String get nextCycle => 'Next Cycle';
+  String get confirmPasswordLabel => 'Password (confirm)';
 
   @override
-  String get tapToSelect => 'Tap to select date';
+  String get usernameLabel => 'Username';
 
   @override
-  String get mood => 'Mood';
+  String get displayNameLabel => 'Display name';
 
   @override
-  String get symptoms => 'Symptoms & Notes';
+  String get loginButton => 'SIGN IN';
 
   @override
-  String get typeSymptoms => 'Type your symptoms or notes...';
+  String get registerButton => 'SIGN UP';
 
   @override
-  String get save => 'Save';
+  String get loginWithGoogle => 'Continue with Google';
 
   @override
-  String get saved => 'Mood & Notes saved ✅';
+  String get forgotPassword => 'Forgot password';
 
   @override
-  String get pleaseSelectDate => 'Please select a date!';
+  String get noAccountYet => 'Don\'t have an account?';
 
   @override
-  String get pleaseEnterValidNumber => 'Please enter a valid number!';
+  String get alreadyHaveAccount => 'Already have an account?';
 
   @override
-  String get selected => 'Selected';
+  String get signUpLink => 'Sign up';
 
   @override
-  String get happy => 'happy 😄';
+  String get signInLink => 'Sign in';
 
   @override
-  String get energetic => 'energetic 🤩';
+  String get passwordsDontMatch => 'Passwords do not match';
 
   @override
-  String get normal => 'normal 😐';
+  String get passwordTooShort => 'Password must be at least 6 characters';
 
   @override
-  String get sad => 'sad 😢';
+  String get emailInvalid => 'Enter a valid email';
 
   @override
-  String get stressed => 'stressed 😰';
+  String get emailRequired => 'Email is required';
 
   @override
-  String get tired => 'tired 😴';
+  String get passwordRequired => 'Password is required';
 
   @override
-  String get overviewTab => 'Home';
+  String get usernameTaken => 'That username is taken';
 
   @override
-  String get notesTab => 'Exercises';
+  String get usernameInvalid => 'Invalid username';
 
   @override
-  String get waterReminder => 'Water reminder';
+  String get verifyEmailTitle => 'Verify email';
 
   @override
-  String get waterGoal => 'Goal';
+  String get verifyEmailSubtitle => 'Almost there';
 
   @override
-  String get glasses => 'glasses';
+  String get verifyEmailBody =>
+      'We sent a verification link to your email. Please check your inbox.';
 
   @override
-  String get addGlass => 'Add 1 glass';
+  String get verifyEmailPolling =>
+      'You\'ll continue automatically once verified.';
 
   @override
-  String get reset => 'Reset';
+  String get verifyEmailSent => 'Verification email sent';
 
   @override
-  String get breathingTitle => 'Breathing exercise';
+  String get verifiedButton => 'I\'VE VERIFIED';
 
   @override
-  String get breathingSubtitle => '4-4-4 rhythm: inhale 4s, hold 4s, exhale 4s';
+  String get resendVerification => 'Resend email';
 
   @override
-  String get breathingReady => 'Ready';
+  String get forgotPasswordTitle => 'Forgot password';
 
   @override
-  String get breatheIn => 'Inhale';
+  String get forgotPasswordSubtitle => 'We\'ll send you a reset link';
 
   @override
-  String get breatheHold => 'Hold';
+  String get sendResetLink => 'SEND RESET LINK';
 
   @override
-  String get breatheOut => 'Exhale';
+  String get resetLinkSent => 'Reset link sent';
 
   @override
-  String get seconds => 'sec';
+  String get backToLogin => 'BACK TO SIGN IN';
 
   @override
-  String get start => 'Start';
+  String get socialLatest => 'Latest';
 
   @override
-  String get stop => 'Stop';
+  String get socialPopular => 'Popular';
 
   @override
-  String get restart => 'Restart';
+  String get newPost => 'New Post';
 
   @override
-  String get aiAssistant => 'hörü';
+  String get editPost => 'Edit Post';
 
   @override
-  String get aiAssistantSubtitle =>
-      'Chat with hörü for brief, supportive advice';
+  String get postHint => 'What\'s on your mind?';
 
   @override
-  String get typeMessage => 'Type a message...';
+  String get postAnonymously => 'Post anonymously';
 
   @override
-  String get sendMessage => 'Send';
+  String get postAnonymouslyHint => 'Your username won\'t appear in the feed';
 
   @override
-  String get getAdvice => 'Get quick advice';
+  String get share => 'SHARE';
 
   @override
-  String get aiRequestFailed => 'AI request failed';
+  String get saveChanges => 'SAVE';
 
   @override
-  String get adviceNeedsInput => 'Enter a summary or message for quick advice';
+  String get emptyPostError => 'You can\'t post empty content';
 
   @override
-  String get horuTab => 'hörü';
+  String get profanityDetected => 'Content violates community guidelines';
 
   @override
-  String get chatTitle => 'Chat';
+  String get noPostsYet => 'No posts yet';
 
   @override
-  String get groupChat => 'Group Chat';
+  String get anonymousUser => 'Anonymous';
 
   @override
-  String get privateChats => 'Private Messages';
+  String get editedLabel => 'edited';
 
   @override
-  String get groupChatDesc => 'Chat with the community, share experiences';
+  String get deletePostTitle => 'Delete Post';
 
   @override
-  String get joinGroupChat => 'Join Group Chat';
+  String get deletePostConfirm => 'Are you sure you want to delete this post?';
 
   @override
-  String get noUsersFound => 'No other users yet';
+  String get commentsTitle => 'Comments';
 
   @override
-  String get error => 'Error';
+  String get writeComment => 'Write a comment...';
 
   @override
-  String get noMessages => 'No messages yet. Send the first one!';
+  String get reply => 'Reply';
 
   @override
-  String get noMessagesYet => 'No messages yet';
+  String replyingTo(String username) {
+    return 'Replying to $username';
+  }
 
   @override
-  String get startConversation =>
-      'Send the first message to start the conversation';
+  String get noComments => 'No comments yet. Be the first!';
 
   @override
-  String get typeGroupMessage => 'Message everyone...';
+  String get deleteCommentTitle => 'Delete Comment';
 
   @override
-  String get chatsTab => 'Chat';
+  String get deleteCommentConfirm =>
+      'Are you sure you want to delete this comment?';
+
+  @override
+  String get reportPost => 'Report';
+
+  @override
+  String get reportTitle => 'Report';
+
+  @override
+  String get reportReasonHint => 'Please select a reason';
+
+  @override
+  String get reportReasonSpam => 'Spam';
+
+  @override
+  String get reportReasonHarassment => 'Harassment';
+
+  @override
+  String get reportReasonInappropriate => 'Inappropriate';
+
+  @override
+  String get reportReasonHate => 'Hate speech';
+
+  @override
+  String get reportReasonOther => 'Other';
+
+  @override
+  String get reportDescription => 'Description (optional)';
+
+  @override
+  String get reportThanks => 'Report received, thank you';
+
+  @override
+  String get reportAlreadyExists => 'You already reported this';
+
+  @override
+  String get profileEdit => 'Edit Profile';
+
+  @override
+  String get profileSettings => 'Settings';
+
+  @override
+  String get profileLogout => 'Log Out';
+
+  @override
+  String get confirmLogoutTitle => 'Log Out';
+
+  @override
+  String get confirmLogoutMsg => 'Are you sure you want to sign out?';
+
+  @override
+  String get cancelAction => 'Cancel';
+
+  @override
+  String get myPosts => 'My Posts';
+
+  @override
+  String get statsPosts => 'Posts';
+
+  @override
+  String get statsLikes => 'Likes';
+
+  @override
+  String get noMyPosts => 'You have no posts yet';
+
+  @override
+  String get dangerZone => 'Danger Zone';
+
+  @override
+  String get deleteAccount => 'DELETE ACCOUNT';
+
+  @override
+  String get deleteAccountConfirm =>
+      'This cannot be undone. All your data, posts and comments will be deleted. Continue?';
+
+  @override
+  String get changePassword => 'Change password (optional)';
+
+  @override
+  String get currentPasswordLabel => 'Current password';
+
+  @override
+  String get newPasswordLabel => 'New password';
+
+  @override
+  String get changesSaved => 'Changes saved';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get generalSettings => 'General';
+
+  @override
+  String get appPurpose => 'App purpose';
+
+  @override
+  String get modePeriodTrack => 'Period Tracking';
+
+  @override
+  String get modePeriodTrackDesc => 'Track your menstrual cycle';
+
+  @override
+  String get modePregnancy => 'Pregnancy';
+
+  @override
+  String get modePregnancyDesc => 'Track your pregnancy';
+
+  @override
+  String get modeTryConceive => 'Trying to Conceive';
+
+  @override
+  String get modeTryConceiveDesc => 'Track fertility windows';
+
+  @override
+  String get notificationsSection => 'Notifications';
+
+  @override
+  String get notifCommentOnPost => 'Comment on my post';
+
+  @override
+  String get notifCommentOnPostDesc =>
+      'Notify me when someone comments on my post';
+
+  @override
+  String get notifPeriodStart => 'Period started';
+
+  @override
+  String get notifPeriodStartDesc => 'Remind me when my period is due';
+
+  @override
+  String get notifPeriodEnd => 'Period ended';
+
+  @override
+  String get notifPeriodEndDesc => 'Remind me when my period ends';
+
+  @override
+  String get notifExerciseReminder => 'Exercise reminder';
+
+  @override
+  String get notifExerciseReminderDesc => 'Twice a week';
+
+  @override
+  String get themeSection => 'Theme';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get themeSystem => 'Follow system';
+
+  @override
+  String get cycleSection => 'Cycle';
+
+  @override
+  String get cycleLengthLabel => 'Average cycle length';
+
+  @override
+  String get periodLengthLabel => 'Period length';
+
+  @override
+  String get errorGeneric => 'Something went wrong';
+
+  @override
+  String get tryAgain => 'Try again';
 }

@@ -107,392 +107,722 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Period Cycle Tracker'**
+  /// **'Lunora'**
   String get appTitle;
 
   /// No description provided for @appSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Track your menstrual cycle'**
+  /// **'Track your cycle, share and connect'**
   String get appSubtitle;
 
-  /// No description provided for @calendar.
+  /// No description provided for @calendarTab.
   ///
   /// In en, this message translates to:
-  /// **'Calendar (predicted cycles)'**
-  String get calendar;
+  /// **'Calendar'**
+  String get calendarTab;
 
-  /// No description provided for @cycleStartDate.
+  /// No description provided for @exerciseTab.
   ///
   /// In en, this message translates to:
-  /// **'Cycle Start Date'**
-  String get cycleStartDate;
+  /// **'Exercise'**
+  String get exerciseTab;
 
-  /// No description provided for @cycleDays.
+  /// No description provided for @socialTab.
   ///
   /// In en, this message translates to:
-  /// **'Cycle Length (days)'**
-  String get cycleDays;
+  /// **'Social'**
+  String get socialTab;
 
-  /// No description provided for @statistics.
+  /// No description provided for @profileTab.
   ///
   /// In en, this message translates to:
-  /// **'Statistics'**
-  String get statistics;
+  /// **'Profile'**
+  String get profileTab;
 
-  /// No description provided for @registeredCycles.
+  /// No description provided for @loginTitle.
   ///
   /// In en, this message translates to:
-  /// **'Registered Cycles'**
-  String get registeredCycles;
+  /// **'Welcome'**
+  String get loginTitle;
 
-  /// No description provided for @averageLength.
+  /// No description provided for @loginSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Average Length'**
-  String get averageLength;
+  /// **'Sign in to continue'**
+  String get loginSubtitle;
 
-  /// No description provided for @regularity.
+  /// No description provided for @registerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Regularity'**
-  String get regularity;
+  /// **'Create account'**
+  String get registerTitle;
 
-  /// No description provided for @calculate.
+  /// No description provided for @registerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Calculate'**
-  String get calculate;
+  /// **'Sign up to join the community'**
+  String get registerSubtitle;
 
-  /// No description provided for @result.
+  /// No description provided for @emailLabel.
   ///
   /// In en, this message translates to:
-  /// **'Result'**
-  String get result;
+  /// **'Email'**
+  String get emailLabel;
 
-  /// No description provided for @cycleSeparator.
+  /// No description provided for @passwordLabel.
   ///
   /// In en, this message translates to:
-  /// **':'**
-  String get cycleSeparator;
+  /// **'Password'**
+  String get passwordLabel;
 
-  /// No description provided for @nextCycle.
+  /// No description provided for @confirmPasswordLabel.
   ///
   /// In en, this message translates to:
-  /// **'Next Cycle'**
-  String get nextCycle;
+  /// **'Password (confirm)'**
+  String get confirmPasswordLabel;
 
-  /// No description provided for @tapToSelect.
+  /// No description provided for @usernameLabel.
   ///
   /// In en, this message translates to:
-  /// **'Tap to select date'**
-  String get tapToSelect;
+  /// **'Username'**
+  String get usernameLabel;
 
-  /// No description provided for @mood.
+  /// No description provided for @displayNameLabel.
   ///
   /// In en, this message translates to:
-  /// **'Mood'**
-  String get mood;
+  /// **'Display name'**
+  String get displayNameLabel;
 
-  /// No description provided for @symptoms.
+  /// No description provided for @loginButton.
   ///
   /// In en, this message translates to:
-  /// **'Symptoms & Notes'**
-  String get symptoms;
+  /// **'SIGN IN'**
+  String get loginButton;
 
-  /// No description provided for @typeSymptoms.
+  /// No description provided for @registerButton.
   ///
   /// In en, this message translates to:
-  /// **'Type your symptoms or notes...'**
-  String get typeSymptoms;
+  /// **'SIGN UP'**
+  String get registerButton;
 
-  /// No description provided for @save.
+  /// No description provided for @loginWithGoogle.
   ///
   /// In en, this message translates to:
-  /// **'Save'**
-  String get save;
+  /// **'Continue with Google'**
+  String get loginWithGoogle;
 
-  /// No description provided for @saved.
+  /// No description provided for @forgotPassword.
   ///
   /// In en, this message translates to:
-  /// **'Mood & Notes saved ✅'**
-  String get saved;
+  /// **'Forgot password'**
+  String get forgotPassword;
 
-  /// No description provided for @pleaseSelectDate.
+  /// No description provided for @noAccountYet.
   ///
   /// In en, this message translates to:
-  /// **'Please select a date!'**
-  String get pleaseSelectDate;
+  /// **'Don\'t have an account?'**
+  String get noAccountYet;
 
-  /// No description provided for @pleaseEnterValidNumber.
+  /// No description provided for @alreadyHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Please enter a valid number!'**
-  String get pleaseEnterValidNumber;
+  /// **'Already have an account?'**
+  String get alreadyHaveAccount;
 
-  /// No description provided for @selected.
+  /// No description provided for @signUpLink.
   ///
   /// In en, this message translates to:
-  /// **'Selected'**
-  String get selected;
+  /// **'Sign up'**
+  String get signUpLink;
 
-  /// No description provided for @happy.
+  /// No description provided for @signInLink.
   ///
   /// In en, this message translates to:
-  /// **'happy 😄'**
-  String get happy;
+  /// **'Sign in'**
+  String get signInLink;
 
-  /// No description provided for @energetic.
+  /// No description provided for @passwordsDontMatch.
   ///
   /// In en, this message translates to:
-  /// **'energetic 🤩'**
-  String get energetic;
+  /// **'Passwords do not match'**
+  String get passwordsDontMatch;
 
-  /// No description provided for @normal.
+  /// No description provided for @passwordTooShort.
   ///
   /// In en, this message translates to:
-  /// **'normal 😐'**
-  String get normal;
+  /// **'Password must be at least 6 characters'**
+  String get passwordTooShort;
 
-  /// No description provided for @sad.
+  /// No description provided for @emailInvalid.
   ///
   /// In en, this message translates to:
-  /// **'sad 😢'**
-  String get sad;
+  /// **'Enter a valid email'**
+  String get emailInvalid;
 
-  /// No description provided for @stressed.
+  /// No description provided for @emailRequired.
   ///
   /// In en, this message translates to:
-  /// **'stressed 😰'**
-  String get stressed;
+  /// **'Email is required'**
+  String get emailRequired;
 
-  /// No description provided for @tired.
+  /// No description provided for @passwordRequired.
   ///
   /// In en, this message translates to:
-  /// **'tired 😴'**
-  String get tired;
+  /// **'Password is required'**
+  String get passwordRequired;
 
-  /// No description provided for @overviewTab.
+  /// No description provided for @usernameTaken.
   ///
   /// In en, this message translates to:
-  /// **'Home'**
-  String get overviewTab;
+  /// **'That username is taken'**
+  String get usernameTaken;
 
-  /// No description provided for @notesTab.
+  /// No description provided for @usernameInvalid.
   ///
   /// In en, this message translates to:
-  /// **'Exercises'**
-  String get notesTab;
+  /// **'Invalid username'**
+  String get usernameInvalid;
 
-  /// No description provided for @waterReminder.
+  /// No description provided for @verifyEmailTitle.
   ///
   /// In en, this message translates to:
-  /// **'Water reminder'**
-  String get waterReminder;
+  /// **'Verify email'**
+  String get verifyEmailTitle;
 
-  /// No description provided for @waterGoal.
+  /// No description provided for @verifyEmailSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Goal'**
-  String get waterGoal;
+  /// **'Almost there'**
+  String get verifyEmailSubtitle;
 
-  /// No description provided for @glasses.
+  /// No description provided for @verifyEmailBody.
   ///
   /// In en, this message translates to:
-  /// **'glasses'**
-  String get glasses;
+  /// **'We sent a verification link to your email. Please check your inbox.'**
+  String get verifyEmailBody;
 
-  /// No description provided for @addGlass.
+  /// No description provided for @verifyEmailPolling.
   ///
   /// In en, this message translates to:
-  /// **'Add 1 glass'**
-  String get addGlass;
+  /// **'You\'ll continue automatically once verified.'**
+  String get verifyEmailPolling;
 
-  /// No description provided for @reset.
+  /// No description provided for @verifyEmailSent.
   ///
   /// In en, this message translates to:
-  /// **'Reset'**
-  String get reset;
+  /// **'Verification email sent'**
+  String get verifyEmailSent;
 
-  /// No description provided for @breathingTitle.
+  /// No description provided for @verifiedButton.
   ///
   /// In en, this message translates to:
-  /// **'Breathing exercise'**
-  String get breathingTitle;
+  /// **'I\'VE VERIFIED'**
+  String get verifiedButton;
 
-  /// No description provided for @breathingSubtitle.
+  /// No description provided for @resendVerification.
   ///
   /// In en, this message translates to:
-  /// **'4-4-4 rhythm: inhale 4s, hold 4s, exhale 4s'**
-  String get breathingSubtitle;
+  /// **'Resend email'**
+  String get resendVerification;
 
-  /// No description provided for @breathingReady.
+  /// No description provided for @forgotPasswordTitle.
   ///
   /// In en, this message translates to:
-  /// **'Ready'**
-  String get breathingReady;
+  /// **'Forgot password'**
+  String get forgotPasswordTitle;
 
-  /// No description provided for @breatheIn.
+  /// No description provided for @forgotPasswordSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Inhale'**
-  String get breatheIn;
+  /// **'We\'ll send you a reset link'**
+  String get forgotPasswordSubtitle;
 
-  /// No description provided for @breatheHold.
+  /// No description provided for @sendResetLink.
   ///
   /// In en, this message translates to:
-  /// **'Hold'**
-  String get breatheHold;
+  /// **'SEND RESET LINK'**
+  String get sendResetLink;
 
-  /// No description provided for @breatheOut.
+  /// No description provided for @resetLinkSent.
   ///
   /// In en, this message translates to:
-  /// **'Exhale'**
-  String get breatheOut;
+  /// **'Reset link sent'**
+  String get resetLinkSent;
 
-  /// No description provided for @seconds.
+  /// No description provided for @backToLogin.
   ///
   /// In en, this message translates to:
-  /// **'sec'**
-  String get seconds;
+  /// **'BACK TO SIGN IN'**
+  String get backToLogin;
 
-  /// No description provided for @start.
+  /// No description provided for @socialLatest.
   ///
   /// In en, this message translates to:
-  /// **'Start'**
-  String get start;
+  /// **'Latest'**
+  String get socialLatest;
 
-  /// No description provided for @stop.
+  /// No description provided for @socialPopular.
   ///
   /// In en, this message translates to:
-  /// **'Stop'**
-  String get stop;
+  /// **'Popular'**
+  String get socialPopular;
 
-  /// No description provided for @restart.
+  /// No description provided for @newPost.
   ///
   /// In en, this message translates to:
-  /// **'Restart'**
-  String get restart;
+  /// **'New Post'**
+  String get newPost;
 
-  /// No description provided for @aiAssistant.
+  /// No description provided for @editPost.
   ///
   /// In en, this message translates to:
-  /// **'hörü'**
-  String get aiAssistant;
+  /// **'Edit Post'**
+  String get editPost;
 
-  /// No description provided for @aiAssistantSubtitle.
+  /// No description provided for @postHint.
   ///
   /// In en, this message translates to:
-  /// **'Chat with hörü for brief, supportive advice'**
-  String get aiAssistantSubtitle;
+  /// **'What\'s on your mind?'**
+  String get postHint;
 
-  /// No description provided for @typeMessage.
+  /// No description provided for @postAnonymously.
   ///
   /// In en, this message translates to:
-  /// **'Type a message...'**
-  String get typeMessage;
+  /// **'Post anonymously'**
+  String get postAnonymously;
 
-  /// No description provided for @sendMessage.
+  /// No description provided for @postAnonymouslyHint.
   ///
   /// In en, this message translates to:
-  /// **'Send'**
-  String get sendMessage;
+  /// **'Your username won\'t appear in the feed'**
+  String get postAnonymouslyHint;
 
-  /// No description provided for @getAdvice.
+  /// No description provided for @share.
   ///
   /// In en, this message translates to:
-  /// **'Get quick advice'**
-  String get getAdvice;
+  /// **'SHARE'**
+  String get share;
 
-  /// No description provided for @aiRequestFailed.
+  /// No description provided for @saveChanges.
   ///
   /// In en, this message translates to:
-  /// **'AI request failed'**
-  String get aiRequestFailed;
+  /// **'SAVE'**
+  String get saveChanges;
 
-  /// No description provided for @adviceNeedsInput.
+  /// No description provided for @emptyPostError.
   ///
   /// In en, this message translates to:
-  /// **'Enter a summary or message for quick advice'**
-  String get adviceNeedsInput;
+  /// **'You can\'t post empty content'**
+  String get emptyPostError;
 
-  /// No description provided for @horuTab.
+  /// No description provided for @profanityDetected.
   ///
   /// In en, this message translates to:
-  /// **'hörü'**
-  String get horuTab;
+  /// **'Content violates community guidelines'**
+  String get profanityDetected;
 
-  /// No description provided for @chatTitle.
+  /// No description provided for @noPostsYet.
   ///
   /// In en, this message translates to:
-  /// **'Chat'**
-  String get chatTitle;
+  /// **'No posts yet'**
+  String get noPostsYet;
 
-  /// No description provided for @groupChat.
+  /// No description provided for @anonymousUser.
   ///
   /// In en, this message translates to:
-  /// **'Group Chat'**
-  String get groupChat;
+  /// **'Anonymous'**
+  String get anonymousUser;
 
-  /// No description provided for @privateChats.
+  /// No description provided for @editedLabel.
   ///
   /// In en, this message translates to:
-  /// **'Private Messages'**
-  String get privateChats;
+  /// **'edited'**
+  String get editedLabel;
 
-  /// No description provided for @groupChatDesc.
+  /// No description provided for @deletePostTitle.
   ///
   /// In en, this message translates to:
-  /// **'Chat with the community, share experiences'**
-  String get groupChatDesc;
+  /// **'Delete Post'**
+  String get deletePostTitle;
 
-  /// No description provided for @joinGroupChat.
+  /// No description provided for @deletePostConfirm.
   ///
   /// In en, this message translates to:
-  /// **'Join Group Chat'**
-  String get joinGroupChat;
+  /// **'Are you sure you want to delete this post?'**
+  String get deletePostConfirm;
 
-  /// No description provided for @noUsersFound.
+  /// No description provided for @commentsTitle.
   ///
   /// In en, this message translates to:
-  /// **'No other users yet'**
-  String get noUsersFound;
+  /// **'Comments'**
+  String get commentsTitle;
 
-  /// No description provided for @error.
+  /// No description provided for @writeComment.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get error;
+  /// **'Write a comment...'**
+  String get writeComment;
 
-  /// No description provided for @noMessages.
+  /// No description provided for @reply.
   ///
   /// In en, this message translates to:
-  /// **'No messages yet. Send the first one!'**
-  String get noMessages;
+  /// **'Reply'**
+  String get reply;
 
-  /// No description provided for @noMessagesYet.
+  /// No description provided for @replyingTo.
   ///
   /// In en, this message translates to:
-  /// **'No messages yet'**
-  String get noMessagesYet;
+  /// **'Replying to {username}'**
+  String replyingTo(String username);
 
-  /// No description provided for @startConversation.
+  /// No description provided for @noComments.
   ///
   /// In en, this message translates to:
-  /// **'Send the first message to start the conversation'**
-  String get startConversation;
+  /// **'No comments yet. Be the first!'**
+  String get noComments;
 
-  /// No description provided for @typeGroupMessage.
+  /// No description provided for @deleteCommentTitle.
   ///
   /// In en, this message translates to:
-  /// **'Message everyone...'**
-  String get typeGroupMessage;
+  /// **'Delete Comment'**
+  String get deleteCommentTitle;
 
-  /// No description provided for @chatsTab.
+  /// No description provided for @deleteCommentConfirm.
   ///
   /// In en, this message translates to:
-  /// **'Chat'**
-  String get chatsTab;
+  /// **'Are you sure you want to delete this comment?'**
+  String get deleteCommentConfirm;
+
+  /// No description provided for @reportPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get reportPost;
+
+  /// No description provided for @reportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get reportTitle;
+
+  /// No description provided for @reportReasonHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a reason'**
+  String get reportReasonHint;
+
+  /// No description provided for @reportReasonSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Spam'**
+  String get reportReasonSpam;
+
+  /// No description provided for @reportReasonHarassment.
+  ///
+  /// In en, this message translates to:
+  /// **'Harassment'**
+  String get reportReasonHarassment;
+
+  /// No description provided for @reportReasonInappropriate.
+  ///
+  /// In en, this message translates to:
+  /// **'Inappropriate'**
+  String get reportReasonInappropriate;
+
+  /// No description provided for @reportReasonHate.
+  ///
+  /// In en, this message translates to:
+  /// **'Hate speech'**
+  String get reportReasonHate;
+
+  /// No description provided for @reportReasonOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get reportReasonOther;
+
+  /// No description provided for @reportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description (optional)'**
+  String get reportDescription;
+
+  /// No description provided for @reportThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Report received, thank you'**
+  String get reportThanks;
+
+  /// No description provided for @reportAlreadyExists.
+  ///
+  /// In en, this message translates to:
+  /// **'You already reported this'**
+  String get reportAlreadyExists;
+
+  /// No description provided for @profileEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get profileEdit;
+
+  /// No description provided for @profileSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get profileSettings;
+
+  /// No description provided for @profileLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get profileLogout;
+
+  /// No description provided for @confirmLogoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get confirmLogoutTitle;
+
+  /// No description provided for @confirmLogoutMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to sign out?'**
+  String get confirmLogoutMsg;
+
+  /// No description provided for @cancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelAction;
+
+  /// No description provided for @myPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'My Posts'**
+  String get myPosts;
+
+  /// No description provided for @statsPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts'**
+  String get statsPosts;
+
+  /// No description provided for @statsLikes.
+  ///
+  /// In en, this message translates to:
+  /// **'Likes'**
+  String get statsLikes;
+
+  /// No description provided for @noMyPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no posts yet'**
+  String get noMyPosts;
+
+  /// No description provided for @dangerZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger Zone'**
+  String get dangerZone;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'DELETE ACCOUNT'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteAccountConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'This cannot be undone. All your data, posts and comments will be deleted. Continue?'**
+  String get deleteAccountConfirm;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password (optional)'**
+  String get changePassword;
+
+  /// No description provided for @currentPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get currentPasswordLabel;
+
+  /// No description provided for @newPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get newPasswordLabel;
+
+  /// No description provided for @changesSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes saved'**
+  String get changesSaved;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @generalSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get generalSettings;
+
+  /// No description provided for @appPurpose.
+  ///
+  /// In en, this message translates to:
+  /// **'App purpose'**
+  String get appPurpose;
+
+  /// No description provided for @modePeriodTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'Period Tracking'**
+  String get modePeriodTrack;
+
+  /// No description provided for @modePeriodTrackDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your menstrual cycle'**
+  String get modePeriodTrackDesc;
+
+  /// No description provided for @modePregnancy.
+  ///
+  /// In en, this message translates to:
+  /// **'Pregnancy'**
+  String get modePregnancy;
+
+  /// No description provided for @modePregnancyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your pregnancy'**
+  String get modePregnancyDesc;
+
+  /// No description provided for @modeTryConceive.
+  ///
+  /// In en, this message translates to:
+  /// **'Trying to Conceive'**
+  String get modeTryConceive;
+
+  /// No description provided for @modeTryConceiveDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Track fertility windows'**
+  String get modeTryConceiveDesc;
+
+  /// No description provided for @notificationsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsSection;
+
+  /// No description provided for @notifCommentOnPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Comment on my post'**
+  String get notifCommentOnPost;
+
+  /// No description provided for @notifCommentOnPostDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify me when someone comments on my post'**
+  String get notifCommentOnPostDesc;
+
+  /// No description provided for @notifPeriodStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Period started'**
+  String get notifPeriodStart;
+
+  /// No description provided for @notifPeriodStartDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me when my period is due'**
+  String get notifPeriodStartDesc;
+
+  /// No description provided for @notifPeriodEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Period ended'**
+  String get notifPeriodEnd;
+
+  /// No description provided for @notifPeriodEndDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me when my period ends'**
+  String get notifPeriodEndDesc;
+
+  /// No description provided for @notifExerciseReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise reminder'**
+  String get notifExerciseReminder;
+
+  /// No description provided for @notifExerciseReminderDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Twice a week'**
+  String get notifExerciseReminderDesc;
+
+  /// No description provided for @themeSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get themeSection;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// No description provided for @themeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow system'**
+  String get themeSystem;
+
+  /// No description provided for @cycleSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycle'**
+  String get cycleSection;
+
+  /// No description provided for @cycleLengthLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Average cycle length'**
+  String get cycleLengthLabel;
+
+  /// No description provided for @periodLengthLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Period length'**
+  String get periodLengthLabel;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get errorGeneric;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tryAgain;
 }
 
 class _AppLocalizationsDelegate
