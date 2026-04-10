@@ -12,6 +12,9 @@ import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { getMessaging } from 'firebase-admin/messaging';
 import { onDocumentCreated, onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { setGlobalOptions } from 'firebase-functions/v2';
+
+setGlobalOptions({region: "europe-west1"}); // Amsterdam, closest to Istanbul with FCM support
 
 initializeApp();
 const db = getFirestore();

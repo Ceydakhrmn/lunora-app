@@ -1,26 +1,43 @@
 {
   "project_info": {
-    "project_number": "475085184976",
-    "project_id": "adet-dongusu",
-    "storage_bucket": "adet-dongusu.firebasestorage.app"
+    "project_number": "198781995461",
+    "project_id": "lunora-app",
+    "storage_bucket": "lunora-app.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:475085184976:android:ecfedcfb9df3fc3b4ce3d5",
+        "mobilesdk_app_id": "1:198781995461:android:94b290ba385589343963ac",
         "android_client_info": {
           "package_name": "com.example.lunora"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "198781995461-3osr73onghmb7bmleqcji7r8l70i6228.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBOqyY9LmnjAfpVOva5ruocb5O8fwxxfDc"
+          "current_key": "AIzaSyB9OJ0S9M7D_jTBq_RpQluMQIiO-Z7Mm7Q"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198781995461-3osr73onghmb7bmleqcji7r8l70i6228.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "198781995461-6pc1ka1avqqej02cbsp86goblhnpbhd7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.yeniUygulama"
+              }
+            }
+          ]
         }
       }
     }

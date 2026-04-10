@@ -2,7 +2,7 @@
   "name": "lunora-functions",
   "description": "Cloud Functions for Lunora",
   "scripts": {
-    "lint": "eslint src",
+    "lint": "eslint --ext .js,.ts src",
     "build": "tsc",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",

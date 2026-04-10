@@ -105,12 +105,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get verifyEmailSubtitle => 'Fast fertig';
 
   @override
-  String get verifyEmailBody =>
-      'Wir haben dir einen Bestätigungslink gesendet. Bitte prüfe dein Postfach.';
+  String get verifyEmailBody => 'Wir haben dir einen Bestätigungslink gesendet. Bitte prüfe dein Postfach.';
 
   @override
-  String get verifyEmailPolling =>
-      'Du wirst automatisch fortgesetzt, sobald verifiziert.';
+  String get verifyEmailPolling => 'Du wirst automatisch fortgesetzt, sobald verifiziert.';
 
   @override
   String get verifyEmailSent => 'Bestätigungs-Email gesendet';
@@ -277,8 +275,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get deleteAccount => 'KONTO LÖSCHEN';
 
   @override
-  String get deleteAccountConfirm =>
-      'Dies kann nicht rückgängig gemacht werden. Alle deine Daten werden gelöscht. Fortfahren?';
+  String get deleteAccountConfirm => 'Dies kann nicht rückgängig gemacht werden. Alle deine Daten werden gelöscht. Fortfahren?';
 
   @override
   String get changePassword => 'Passwort ändern (optional)';
@@ -326,15 +323,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get notifCommentOnPost => 'Kommentar zu meinem Beitrag';
 
   @override
-  String get notifCommentOnPostDesc =>
-      'Benachrichtigen, wenn jemand kommentiert';
+  String get notifCommentOnPostDesc => 'Benachrichtigen, wenn jemand kommentiert';
 
   @override
   String get notifPeriodStart => 'Periode begonnen';
 
   @override
-  String get notifPeriodStartDesc =>
-      'Erinnere mich, wenn meine Periode fällig ist';
+  String get notifPeriodStartDesc => 'Erinnere mich, wenn meine Periode fällig ist';
 
   @override
   String get notifPeriodEnd => 'Periode beendet';

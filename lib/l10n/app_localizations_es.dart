@@ -105,12 +105,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get verifyEmailSubtitle => 'Casi listo';
 
   @override
-  String get verifyEmailBody =>
-      'Te enviamos un enlace de verificación. Revisa tu bandeja.';
+  String get verifyEmailBody => 'Te enviamos un enlace de verificación. Revisa tu bandeja.';
 
   @override
-  String get verifyEmailPolling =>
-      'Continuaremos automáticamente cuando verifiques.';
+  String get verifyEmailPolling => 'Continuaremos automáticamente cuando verifiques.';
 
   @override
   String get verifyEmailSent => 'Email de verificación enviado';
@@ -125,8 +123,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get forgotPasswordTitle => 'Olvidé mi contraseña';
 
   @override
-  String get forgotPasswordSubtitle =>
-      'Te enviaremos un enlace de recuperación';
+  String get forgotPasswordSubtitle => 'Te enviaremos un enlace de recuperación';
 
   @override
   String get sendResetLink => 'ENVIAR ENLACE';
@@ -183,8 +180,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deletePostTitle => 'Eliminar publicación';
 
   @override
-  String get deletePostConfirm =>
-      '¿Seguro que quieres eliminar esta publicación?';
+  String get deletePostConfirm => '¿Seguro que quieres eliminar esta publicación?';
 
   @override
   String get commentsTitle => 'Comentarios';
@@ -279,8 +275,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteAccount => 'ELIMINAR CUENTA';
 
   @override
-  String get deleteAccountConfirm =>
-      'Esta acción es irreversible. Se eliminarán todos tus datos. ¿Continuar?';
+  String get deleteAccountConfirm => 'Esta acción es irreversible. Se eliminarán todos tus datos. ¿Continuar?';
 
   @override
   String get changePassword => 'Cambiar contraseña (opcional)';

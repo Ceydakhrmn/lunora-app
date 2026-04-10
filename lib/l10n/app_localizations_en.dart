@@ -105,12 +105,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get verifyEmailSubtitle => 'Almost there';
 
   @override
-  String get verifyEmailBody =>
-      'We sent a verification link to your email. Please check your inbox.';
+  String get verifyEmailBody => 'We sent a verification link to your email. Please check your inbox.';
 
   @override
-  String get verifyEmailPolling =>
-      'You\'ll continue automatically once verified.';
+  String get verifyEmailPolling => 'You\'ll continue automatically once verified.';
 
   @override
   String get verifyEmailSent => 'Verification email sent';
@@ -205,8 +203,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteCommentTitle => 'Delete Comment';
 
   @override
-  String get deleteCommentConfirm =>
-      'Are you sure you want to delete this comment?';
+  String get deleteCommentConfirm => 'Are you sure you want to delete this comment?';
 
   @override
   String get reportPost => 'Report';
@@ -278,8 +275,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteAccount => 'DELETE ACCOUNT';
 
   @override
-  String get deleteAccountConfirm =>
-      'This cannot be undone. All your data, posts and comments will be deleted. Continue?';
+  String get deleteAccountConfirm => 'This cannot be undone. All your data, posts and comments will be deleted. Continue?';
 
   @override
   String get changePassword => 'Change password (optional)';
@@ -327,8 +323,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifCommentOnPost => 'Comment on my post';
 
   @override
-  String get notifCommentOnPostDesc =>
-      'Notify me when someone comments on my post';
+  String get notifCommentOnPostDesc => 'Notify me when someone comments on my post';
 
   @override
   String get notifPeriodStart => 'Period started';

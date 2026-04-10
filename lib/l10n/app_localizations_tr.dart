@@ -105,12 +105,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get verifyEmailSubtitle => 'Kayıt tamamlandı, sadece bir adım kaldı';
 
   @override
-  String get verifyEmailBody =>
-      'Sana bir doğrulama linki gönderdik. Email kutunu kontrol et ve linke tıkla.';
+  String get verifyEmailBody => 'Sana bir doğrulama linki gönderdik. Email kutunu kontrol et ve linke tıkla.';
 
   @override
-  String get verifyEmailPolling =>
-      'Doğrulama tamamlandığında otomatik olarak devam edilecek.';
+  String get verifyEmailPolling => 'Doğrulama tamamlandığında otomatik olarak devam edilecek.';
 
   @override
   String get verifyEmailSent => 'Doğrulama e-postası gönderildi';
@@ -277,8 +275,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get deleteAccount => 'HESABI SİL';
 
   @override
-  String get deleteAccountConfirm =>
-      'Bu işlem geri alınamaz. Tüm verilerin, paylaşımların ve yorumların silinecek. Emin misin?';
+  String get deleteAccountConfirm => 'Bu işlem geri alınamaz. Tüm verilerin, paylaşımların ve yorumların silinecek. Emin misin?';
 
   @override
   String get changePassword => 'Şifreyi değiştir (opsiyonel)';
@@ -326,8 +323,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get notifCommentOnPost => 'Postuma yorum geldiğinde';
 
   @override
-  String get notifCommentOnPostDesc =>
-      'Paylaşımlarına yorum geldiğinde bildirim al';
+  String get notifCommentOnPostDesc => 'Paylaşımlarına yorum geldiğinde bildirim al';
 
   @override
   String get notifPeriodStart => 'Regl başladı';

@@ -81,8 +81,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get passwordsDontMatch => 'Les mots de passe ne correspondent pas';
 
   @override
-  String get passwordTooShort =>
-      'Le mot de passe doit contenir au moins 6 caractères';
+  String get passwordTooShort => 'Le mot de passe doit contenir au moins 6 caractères';
 
   @override
   String get emailInvalid => 'Entre un email valide';
@@ -106,12 +105,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get verifyEmailSubtitle => 'Presque terminé';
 
   @override
-  String get verifyEmailBody =>
-      'Nous avons envoyé un lien de vérification à ton email.';
+  String get verifyEmailBody => 'Nous avons envoyé un lien de vérification à ton email.';
 
   @override
-  String get verifyEmailPolling =>
-      'Tu continueras automatiquement une fois vérifié.';
+  String get verifyEmailPolling => 'Tu continueras automatiquement une fois vérifié.';
 
   @override
   String get verifyEmailSent => 'Email de vérification envoyé';
@@ -126,8 +123,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get forgotPasswordTitle => 'Mot de passe oublié';
 
   @override
-  String get forgotPasswordSubtitle =>
-      'On t\'envoie un lien de réinitialisation';
+  String get forgotPasswordSubtitle => 'On t\'envoie un lien de réinitialisation';
 
   @override
   String get sendResetLink => 'ENVOYER LE LIEN';
@@ -279,8 +275,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get deleteAccount => 'SUPPRIMER LE COMPTE';
 
   @override
-  String get deleteAccountConfirm =>
-      'Cette action est irréversible. Toutes tes données seront supprimées. Continuer ?';
+  String get deleteAccountConfirm => 'Cette action est irréversible. Toutes tes données seront supprimées. Continuer ?';
 
   @override
   String get changePassword => 'Changer de mot de passe (optionnel)';

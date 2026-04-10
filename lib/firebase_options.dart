@@ -33,30 +33,31 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'TODO',
-    appId: 'TODO',
-    messagingSenderId: 'TODO',
-    projectId: 'TODO',
-    authDomain: 'TODO',
-    storageBucket: 'TODO',
-    measurementId: 'TODO',
+    apiKey: 'AIzaSyB2IE6araxoSVTYpRs1O3-oPSW1o8wqkpg',
+    appId: '1:198781995461:web:835d8a0428da2cbd3963ac',
+    messagingSenderId: '198781995461',
+    projectId: 'lunora-app',
+    authDomain: 'lunora-app.firebaseapp.com',
+    storageBucket: 'lunora-app.firebasestorage.app',
+    measurementId: 'G-2JMRFPG0VB',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBOqyY9LmnjAfpVOva5ruocb5O8fwxxfDc',
-    appId: '1:475085184976:android:ecfedcfb9df3fc3b4ce3d5',
-    messagingSenderId: '475085184976',
-    projectId: 'lunora',
-    storageBucket: 'lunora.firebasestorage.app',
+    apiKey: 'AIzaSyB9OJ0S9M7D_jTBq_RpQluMQIiO-Z7Mm7Q',
+    appId: '1:198781995461:android:94b290ba385589343963ac',
+    messagingSenderId: '198781995461',
+    projectId: 'lunora-app',
+    storageBucket: 'lunora-app.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'TODO',
-    appId: 'TODO',
-    messagingSenderId: 'TODO',
-    projectId: 'TODO',
-    storageBucket: 'TODO',
-    iosBundleId: 'TODO',
+    apiKey: 'AIzaSyBcIcUmsjUzxggPk6uCRWPikaOCl8G94Ak',
+    appId: '1:198781995461:ios:6a532f05849a58e03963ac',
+    messagingSenderId: '198781995461',
+    projectId: 'lunora-app',
+    storageBucket: 'lunora-app.firebasestorage.app',
+    iosClientId: '198781995461-6pc1ka1avqqej02cbsp86goblhnpbhd7.apps.googleusercontent.com',
+    iosBundleId: 'com.example.yeniUygulama',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
