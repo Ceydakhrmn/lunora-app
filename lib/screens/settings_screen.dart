@@ -1,9 +1,22 @@
 // =============================================
 // screens/settings_screen.dart
+// Sections:
+//   • Genel Ayarlar — app mode (regl / hamile / hamile kalma)
+//   • Bildirimler — FCM push toggles (stored on user doc)
+//   • Tema — light / dark / system
+//   • Döngü — average cycle & period length
+//
+// All sections are theme-aware (work in light + dark).
 // =============================================
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../core/theme/app_colors.dart';
+import '../core/theme/theme_provider.dart';
+import '../models/app_user.dart';
+import '../models/notification_prefs.dart';
+import '../providers/auth_provider.dart';
 import '../providers/cycle_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -12,23 +25,14 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text(
-          'Ayarlar',
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black54),
-          onPressed: () => Navigator.pop(context),
-        ),
+        title: const Text('Ayarlar'),
       ),
       body: ListView(
         children: const [
           _GeneralSettingsSection(),
-          _RemindersSection(),
+          _NotificationsSection(),
+          _ThemeSection(),
           _CycleSettingsSection(),
           SizedBox(height: 32),
         ],
@@ -37,7 +41,9 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-// ---- Genel Ayarlar ----
+// ────────────────────────────────────────────
+// Genel Ayarlar
+// ────────────────────────────────────────────
 class _GeneralSettingsSection extends StatelessWidget {
   const _GeneralSettingsSection();
 
@@ -49,13 +55,7 @@ class _GeneralSettingsSection extends StatelessWidget {
       title: 'Genel Ayarlar',
       icon: Icons.tune,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 4, bottom: 10),
-          child: Text(
-            'Uygulama amacı',
-            style: TextStyle(fontSize: 13, color: Colors.black54),
-          ),
-        ),
+        _subLabel(context, 'Uygulama amacı'),
         _ModeCard(
           title: 'Regl Takip',
           subtitle: 'Adet döngünüzü takip edin',
@@ -84,48 +84,117 @@ class _GeneralSettingsSection extends StatelessWidget {
   }
 }
 
-// ---- Hatırlatıcılar ----
-class _RemindersSection extends StatelessWidget {
-  const _RemindersSection();
+// ────────────────────────────────────────────
+// Bildirimler (FCM)
+// ────────────────────────────────────────────
+class _NotificationsSection extends StatelessWidget {
+  const _NotificationsSection();
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<CycleProvider>();
+    final auth = context.watch<AuthProvider>();
+    final user = auth.appUser;
+    final prefs = user?.preferences.notifications ?? const NotificationPrefs();
+
+    Future<void> update(NotificationPrefs newPrefs) async {
+      if (user == null) return;
+      try {
+        await auth.userService
+            .updateNotificationPrefs(user.uid, newPrefs);
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Kaydedilemedi: $e')));
+        }
+      }
+    }
 
     return _Section(
-      title: 'Hatırlatıcılar',
+      title: 'Bildirimler',
       icon: Icons.notifications_outlined,
       children: [
-        _ReminderTile(
-          title: 'Regl başlangıcı',
-          subtitle: 'Regl başladığında bildirim al',
-          value: provider.reminderPeriodStart,
-          onChanged: provider.updateReminderPeriodStart,
+        _SwitchRow(
+          title: 'Postuma yorum geldiğinde',
+          subtitle: 'Paylaşımlarına yorum geldiğinde bildirim al',
+          value: prefs.commentOnPost,
+          onChanged: (v) => update(prefs.copyWith(commentOnPost: v)),
         ),
-        _ReminderTile(
-          title: 'Regl bitişi',
-          subtitle: 'Regl bittiğinde bildirim al',
-          value: provider.reminderPeriodEnd,
-          onChanged: provider.updateReminderPeriodEnd,
+        _SwitchRow(
+          title: 'Regl başladı',
+          subtitle: 'Regl günün geldiğinde hatırlat',
+          value: prefs.periodStart,
+          onChanged: (v) => update(prefs.copyWith(periodStart: v)),
         ),
-        _ReminderTile(
-          title: 'Yumurtlama günü',
-          subtitle: 'Yumurtlama gününde bildirim al',
-          value: provider.reminderOvulation,
-          onChanged: provider.updateReminderOvulation,
+        _SwitchRow(
+          title: 'Regl bitti',
+          subtitle: 'Regl bitiş günü hatırlat',
+          value: prefs.periodEnd,
+          onChanged: (v) => update(prefs.copyWith(periodEnd: v)),
         ),
-        _ReminderTile(
-          title: 'Doğurganlık penceresi',
-          subtitle: 'Doğurganlık dönemine girince bildirim al',
-          value: provider.reminderFertile,
-          onChanged: provider.updateReminderFertile,
+        _SwitchRow(
+          title: 'Egzersiz hatırlatıcısı',
+          subtitle: 'Haftada 2 kez egzersiz zamanı',
+          value: prefs.exerciseReminder,
+          onChanged: (v) => update(prefs.copyWith(exerciseReminder: v)),
         ),
       ],
     );
   }
 }
 
-// ---- Döngü Ayarları ----
+// ────────────────────────────────────────────
+// Tema
+// ────────────────────────────────────────────
+class _ThemeSection extends StatelessWidget {
+  const _ThemeSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
+    final auth = context.watch<AuthProvider>();
+    final user = auth.appUser;
+    final current =
+        user?.preferences.themeMode ?? themeProvider.mode;
+
+    Future<void> setMode(AppThemeMode mode) async {
+      themeProvider.setMode(mode);
+      if (user != null) {
+        try {
+          await auth.userService.updateThemeMode(user.uid, mode);
+        } catch (_) {}
+      }
+    }
+
+    return _Section(
+      title: 'Tema',
+      icon: Icons.palette_outlined,
+      children: [
+        _ThemeRadio(
+          label: 'Sistemi takip et',
+          value: AppThemeMode.system,
+          groupValue: current,
+          onChanged: setMode,
+        ),
+        _ThemeRadio(
+          label: 'Açık',
+          value: AppThemeMode.light,
+          groupValue: current,
+          onChanged: setMode,
+        ),
+        _ThemeRadio(
+          label: 'Koyu',
+          value: AppThemeMode.dark,
+          groupValue: current,
+          onChanged: setMode,
+        ),
+      ],
+    );
+  }
+}
+
+// ────────────────────────────────────────────
+// Döngü Ayarları
+// ────────────────────────────────────────────
 class _CycleSettingsSection extends StatelessWidget {
   const _CycleSettingsSection();
 
@@ -137,11 +206,7 @@ class _CycleSettingsSection extends StatelessWidget {
       title: 'Döngü',
       icon: Icons.loop,
       children: [
-        const Text(
-          'Ortalama döngü uzunluğu',
-          style: TextStyle(fontSize: 13, color: Colors.black54),
-        ),
-        const SizedBox(height: 6),
+        _subLabel(context, 'Ortalama döngü uzunluğu'),
         _SliderTile(
           value: provider.cycleLength.toDouble(),
           min: 21,
@@ -151,11 +216,7 @@ class _CycleSettingsSection extends StatelessWidget {
           onChanged: (v) => provider.updateCycleLength(v.round()),
         ),
         const SizedBox(height: 16),
-        const Text(
-          'Regl süresi',
-          style: TextStyle(fontSize: 13, color: Colors.black54),
-        ),
-        const SizedBox(height: 6),
+        _subLabel(context, 'Regl süresi'),
         _SliderTile(
           value: provider.periodLength.toDouble(),
           min: 2,
@@ -169,7 +230,24 @@ class _CycleSettingsSection extends StatelessWidget {
   }
 }
 
-// ---- Ortak bileşenler ----
+// ────────────────────────────────────────────
+// Shared widgets
+// ────────────────────────────────────────────
+Widget _subLabel(BuildContext context, String text) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 4, bottom: 10),
+    child: Text(
+      text,
+      style: TextStyle(
+        fontSize: 13,
+        color: Theme.of(context)
+            .colorScheme
+            .onSurface
+            .withValues(alpha: 0.6),
+      ),
+    ),
+  );
+}
 
 class _Section extends StatelessWidget {
   final String title;
@@ -184,6 +262,7 @@ class _Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primary = Theme.of(context).colorScheme.primary;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
       child: Column(
@@ -191,14 +270,13 @@ class _Section extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, size: 18, color: const Color(0xFF7C3AED)),
+              Icon(icon, size: 18, color: primary),
               const SizedBox(width: 8),
               Text(
                 title,
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
-                  color: Colors.black87,
                 ),
               ),
             ],
@@ -207,9 +285,14 @@ class _Section extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey.shade50,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.grey.shade200),
+              border: Border.all(
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.08),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -239,26 +322,38 @@ class _ModeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primary = Theme.of(context).colorScheme.primary;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFFF3EEFF) : Colors.white,
+          color: selected
+              ? primary.withValues(alpha: isDark ? 0.15 : 0.08)
+              : Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: selected ? const Color(0xFF7C3AED) : Colors.grey.shade300,
+            color: selected
+                ? primary
+                : Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.15),
             width: selected ? 2 : 1,
           ),
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 22,
-              color: selected ? const Color(0xFF7C3AED) : Colors.grey,
-            ),
+            Icon(icon,
+                size: 22,
+                color: selected
+                    ? primary
+                    : Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withValues(alpha: 0.6)),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -269,18 +364,26 @@ class _ModeCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: selected ? const Color(0xFF7C3AED) : Colors.black87,
+                      color: selected
+                          ? primary
+                          : Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   Text(
                     subtitle,
-                    style: const TextStyle(fontSize: 12, color: Colors.black45),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withValues(alpha: 0.6),
+                    ),
                   ),
                 ],
               ),
             ),
             if (selected)
-              const Icon(Icons.check_circle, color: Color(0xFF7C3AED), size: 20),
+              Icon(Icons.check_circle, color: primary, size: 20),
           ],
         ),
       ),
@@ -288,13 +391,13 @@ class _ModeCard extends StatelessWidget {
   }
 }
 
-class _ReminderTile extends StatelessWidget {
+class _SwitchRow extends StatelessWidget {
   final String title;
   final String subtitle;
   final bool value;
   final ValueChanged<bool> onChanged;
 
-  const _ReminderTile({
+  const _SwitchRow({
     required this.title,
     required this.subtitle,
     required this.value,
@@ -316,23 +419,55 @@ class _ReminderTile extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black87,
                   ),
                 ),
                 Text(
                   subtitle,
-                  style: const TextStyle(fontSize: 12, color: Colors.black45),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withValues(alpha: 0.6),
+                  ),
                 ),
               ],
             ),
           ),
-          Switch(
+          Switch.adaptive(
             value: value,
             onChanged: onChanged,
-            activeColor: const Color(0xFF7C3AED),
+            activeTrackColor: AppColors.primary,
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ThemeRadio extends StatelessWidget {
+  final String label;
+  final AppThemeMode value;
+  final AppThemeMode groupValue;
+  final ValueChanged<AppThemeMode> onChanged;
+
+  const _ThemeRadio({
+    required this.label,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RadioListTile<AppThemeMode>(
+      contentPadding: EdgeInsets.zero,
+      value: value,
+      groupValue: groupValue,
+      title: Text(label),
+      onChanged: (v) {
+        if (v != null) onChanged(v);
+      },
     );
   }
 }
@@ -364,18 +499,16 @@ class _SliderTile extends StatelessWidget {
             min: min,
             max: max,
             divisions: divisions,
-            activeColor: const Color(0xFF7C3AED),
             onChanged: onChanged,
           ),
         ),
         SizedBox(
-          width: 52,
+          width: 56,
           child: Text(
             label,
             style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: Colors.black87,
             ),
             textAlign: TextAlign.right,
           ),
