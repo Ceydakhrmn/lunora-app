@@ -82,6 +82,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
         } catch (_) {}
         setState(() => _error = 'Bu kullanıcı adı alınmış');
         return;
+      } on FirebaseException catch (e) {
+        // Firestore (or other Firebase) failed AFTER the auth user was
+        // created — roll back the auth user so the email can be reused.
+        try {
+          await cred.user?.delete();
+        } catch (_) {}
+        setState(() => _error = _mapFirestoreError(e));
+        return;
       }
 
       await auth.authService.updateDisplayName(_displayNameCtrl.text.trim());
@@ -93,6 +101,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       setState(() => _error = 'Kayıt başarısız: $e');
     } finally {
       if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  String _mapFirestoreError(FirebaseException e) {
+    switch (e.code) {
+      case 'unavailable':
+        return 'Sunucuya ulaşılamıyor. İnternet bağlantınızı kontrol edip tekrar deneyin.';
+      case 'permission-denied':
+        return 'Yetki hatası. Lütfen daha sonra tekrar deneyin.';
+      case 'deadline-exceeded':
+        return 'İstek zaman aşımına uğradı. Tekrar deneyin.';
+      default:
+        return 'Kayıt tamamlanamadı: ${e.code}';
     }
   }
 
