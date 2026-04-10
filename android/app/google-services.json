@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "198781995461-bhd4sgpafgmck7u3abfjohi80h3kmpbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lunora",
+            "certificate_hash": "6caff517a94fada21afd8e7a9821c820e3365f21"
+          }
+        },
+        {
           "client_id": "198781995461-3osr73onghmb7bmleqcji7r8l70i6228.apps.googleusercontent.com",
           "client_type": 3
         }
