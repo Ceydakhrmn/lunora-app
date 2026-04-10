@@ -40,4 +40,5 @@ flutter:
   assets:
     - assets/login_bg.png
     - assets/icon/app_icon.png
+    - assets/exercises/
 

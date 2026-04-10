@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter run:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter build:*)",
+      "Bash(flutter devices:*)",
+      "Bash(flutter install:*)",
+      "Bash(adb devices:*)",
+      "Read(//proc/1/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\ceyda\\ajanda-app\\src\\app\\flutter\\android\\app\\src\\main\\kotlin\\com\\example"
+    ]
+  }
+}

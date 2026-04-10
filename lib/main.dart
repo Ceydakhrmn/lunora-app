@@ -9,6 +9,7 @@ import 'gen_l10n/app_localizations.dart';
 import 'screens/ai_chat_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_screen.dart' as calendar;
+import 'screens/exercise_screen.dart';
 import 'providers/cycle_provider.dart';
 
 Future<void> main() async {
@@ -64,10 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
   int _breathingPhaseIndex = 0;
   int _breathingSecond = 0;
   late final TextEditingController _cycleLengthController;
+  late final PageController _pageController;
 
   @override
   void initState() {
     _cycleLengthController = TextEditingController(text: '28');
+    _pageController = PageController(initialPage: _selectedTabIndex);
     super.initState();
     _loadPreferences();
   }
@@ -76,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void dispose() {
     _breathingTimer?.cancel();
     _cycleLengthController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -902,15 +906,23 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final Widget body = _selectedTabIndex == 2
-        ? AiChatScreen(contextSummary: _buildAiContext(l10n), showAppBar: false)
-        : Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: _selectedTabIndex == 0 ? const calendar.HomeScreen() : exercisesTab,
-          );
+    final Widget body = PageView(
+      controller: _pageController,
+      physics: const ClampingScrollPhysics(),
+      onPageChanged: (index) {
+        setState(() {
+          _selectedTabIndex = index;
+        });
+      },
+      children: [
+        const calendar.HomeScreen(),
+        const ExerciseScreen(),
+        AiChatScreen(contextSummary: _buildAiContext(l10n), showAppBar: false),
+      ],
+    );
 
     return Scaffold(
-      appBar: AppBar(title: const SizedBox.shrink(), centerTitle: true),
+      appBar: AppBar(toolbarHeight: 0, elevation: 0, backgroundColor: Colors.white),
       body: body,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTabIndex,
@@ -918,6 +930,11 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {
             _selectedTabIndex = index;
           });
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
         },
         items: [
           BottomNavigationBarItem(

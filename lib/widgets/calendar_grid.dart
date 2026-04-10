@@ -1,5 +1,11 @@
+// =============================================
+// widgets/calendar_grid.dart
+// Takvim ızgarasını çizen ana widget
+// =============================================
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../providers/cycle_provider.dart';
 import '../utils/phase_colors.dart';
 import 'day_cell.dart';
@@ -12,18 +18,24 @@ class CalendarGrid extends StatelessWidget {
     final provider = context.watch<CycleProvider>();
     final month = provider.focusedMonth;
 
+    // Ayın ilk günü hangi haftanın günü? (Pazartesi=0 ... Pazar=6)
     final firstDay = DateTime(month.year, month.month, 1);
-    int startOffset = firstDay.weekday - 1;
+    int startOffset = firstDay.weekday - 1; // weekday: 1=Pzt, 7=Pzr
 
+    // Ayın son günü
     final lastDay = DateTime(month.year, month.month + 1, 0);
     final daysInMonth = lastDay.day;
 
+    // Önceki ayın doldurma günleri
     final prevMonthLastDay = DateTime(month.year, month.month, 0).day;
 
     return Column(
       children: [
+        // ---- Haftanın günleri başlıkları ----
         _buildWeekdayHeader(),
         const SizedBox(height: 8),
+
+        // ---- Gün hücreleri ----
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -35,17 +47,26 @@ class CalendarGrid extends StatelessWidget {
           ),
           itemCount: startOffset + daysInMonth + _trailingDays(startOffset, daysInMonth),
           itemBuilder: (context, index) {
+            // Önceki ay
             if (index < startOffset) {
               final day = prevMonthLastDay - startOffset + index + 1;
-              return DayCell(label: '$day', isOtherMonth: true);
+              return DayCell(
+                label: '$day',
+                isOtherMonth: true,
+              );
             }
 
+            // Sonraki ay
             final dayIndex = index - startOffset;
             if (dayIndex >= daysInMonth) {
               final day = dayIndex - daysInMonth + 1;
-              return DayCell(label: '$day', isOtherMonth: true);
+              return DayCell(
+                label: '$day',
+                isOtherMonth: true,
+              );
             }
 
+            // Bu ayın günleri
             final date = DateTime(month.year, month.month, dayIndex + 1);
             final phase = provider.phaseOf(date);
             final style = phaseStyle(phase);

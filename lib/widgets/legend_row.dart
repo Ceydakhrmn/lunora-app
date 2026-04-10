@@ -1,3 +1,8 @@
+// =============================================
+// widgets/legend_row.dart
+// Alt kısımdaki renk açıklama (legend) widget'ı
+// =============================================
+
 import 'package:flutter/material.dart';
 import '../utils/phase_colors.dart';
 

@@ -1,3 +1,8 @@
+// =============================================
+// widgets/day_cell.dart
+// Takvimdeki tek bir gün kutusu
+// =============================================
+
 import 'package:flutter/material.dart';
 
 class DayCell extends StatelessWidget {
@@ -31,7 +36,9 @@ class DayCell extends StatelessWidget {
         duration: const Duration(milliseconds: 150),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
+          // Diğer aylara ait günler renksiz ve şeffaf
           color: isOtherMonth ? Colors.transparent : bg,
+          // Bugün için dış çizgi (outline)
           border: isToday && !isSelected
               ? Border.all(color: Colors.black87, width: 2)
               : isSelected

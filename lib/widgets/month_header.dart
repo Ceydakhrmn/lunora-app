@@ -1,5 +1,11 @@
+// =============================================
+// widgets/month_header.dart
+// Üstteki ay adı + ileri/geri ok butonları
+// =============================================
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../providers/cycle_provider.dart';
 
 class MonthHeader extends StatelessWidget {
@@ -10,6 +16,7 @@ class MonthHeader extends StatelessWidget {
     final provider = context.watch<CycleProvider>();
     final month = provider.focusedMonth;
 
+    // Ay adını Türkçe büyük harfle yaz
     final monthName = _turkishMonth(month.month).toUpperCase();
     final title = '$monthName ${month.year}';
 
