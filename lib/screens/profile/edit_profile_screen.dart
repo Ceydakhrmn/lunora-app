@@ -5,7 +5,7 @@
 // re-authentication too (email/password OR Google).
 // =============================================
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

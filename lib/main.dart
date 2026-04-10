@@ -21,7 +21,7 @@ import 'core/auth/auth_gate.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_provider.dart';
 import 'firebase_options.dart';
-import 'gen_l10n/app_localizations.dart';
+import 'l10n/app_localizations.dart';
 import 'providers/auth_provider.dart';
 import 'providers/cycle_provider.dart';
 

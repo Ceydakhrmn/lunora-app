@@ -6,7 +6,7 @@
 // email. AuthGate routes to VerifyEmailScreen automatically.
 // =============================================
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     final auth = context.read<AuthProvider>();
-    UserCredential? cred;
 
     try {
       // Cheap pre-check (the transaction below is the real claim).
@@ -62,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         return;
       }
 
-      cred = await auth.authService.signUpWithEmail(
+      final cred = await auth.authService.signUpWithEmail(
         email: _emailCtrl.text,
         password: _passwordCtrl.text,
       );

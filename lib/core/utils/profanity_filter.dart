@@ -5,6 +5,8 @@
 // operates on any list provided to it.
 // =============================================
 
+import 'package:characters/characters.dart';
+
 class ProfanityFilter {
   ProfanityFilter._();
 
