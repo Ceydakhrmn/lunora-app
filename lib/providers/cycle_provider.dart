@@ -103,6 +103,7 @@ class CycleProvider extends ChangeNotifier {
   bool _reminderOvulation = false;
   bool _reminderFertile = false;
   final Map<String, String> _dayNotes = {};
+  final Map<String, String> _dayMoods = {};
   final List<CycleRecord> _cycleHistory = [];
 
   // ── Getters (same public surface as before) ──
@@ -117,6 +118,7 @@ class CycleProvider extends ChangeNotifier {
   bool get reminderOvulation => _reminderOvulation;
   bool get reminderFertile => _reminderFertile;
   String noteForDay(DateTime day) => _dayNotes[_dateKey(day)] ?? '';
+  String moodForDay(DateTime day) => _dayMoods[_dateKey(day)] ?? '';
   List<CycleRecord> get cycleHistory => List.unmodifiable(_cycleHistory);
 
   CycleModel get cycle => CycleModel(
@@ -147,6 +149,7 @@ class CycleProvider extends ChangeNotifier {
     _uid = user.uid;
     _subscribeUserDoc(user.uid);
     _subscribeNotes(user.uid);
+    _subscribeMoods(user.uid);
     _subscribeHistory(user.uid);
   }
 
@@ -166,6 +169,7 @@ class CycleProvider extends ChangeNotifier {
     _reminderOvulation = false;
     _reminderFertile = false;
     _dayNotes.clear();
+    _dayMoods.clear();
     _cycleHistory.clear();
   }
 
@@ -208,6 +212,22 @@ class CycleProvider extends ChangeNotifier {
         final note = doc.data()['note'] as String?;
         if (note != null && note.isNotEmpty) {
           _dayNotes[doc.id] = note;
+        }
+      }
+      notifyListeners();
+    });
+  }
+
+  void _subscribeMoods(String uid) {
+    _userRef(uid)
+        .collection(FirestorePaths.cycleMoods)
+        .snapshots()
+        .listen((snap) {
+      _dayMoods.clear();
+      for (final doc in snap.docs) {
+        final mood = doc.data()['mood'] as String?;
+        if (mood != null && mood.isNotEmpty) {
+          _dayMoods[doc.id] = mood;
         }
       }
       notifyListeners();
@@ -367,6 +387,29 @@ class CycleProvider extends ChangeNotifier {
     _updateUserDoc({
       'reminders': {'fertile': v},
     });
+  }
+
+  // ── Daily moods ──
+  void saveMood(DateTime day, String mood) {
+    final key = _dateKey(day);
+    if (mood.isEmpty) {
+      _dayMoods.remove(key);
+    } else {
+      _dayMoods[key] = mood;
+    }
+    notifyListeners();
+
+    final uid = _uid;
+    if (uid == null) return;
+    final ref = _userRef(uid).collection(FirestorePaths.cycleMoods).doc(key);
+    if (mood.isEmpty) {
+      ref.delete().catchError((e) => debugPrint('mood delete error: $e'));
+    } else {
+      ref.set({
+        'mood': mood,
+        'updatedAt': FieldValue.serverTimestamp(),
+      }).catchError((e) => debugPrint('mood save error: $e'));
+    }
   }
 
   // ── Daily notes ──

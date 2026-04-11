@@ -10,6 +10,7 @@ import '../widgets/calendar_grid.dart';
 import '../widgets/month_header.dart';
 import '../widgets/info_card.dart';
 import '../widgets/note_card.dart';
+import '../widgets/mood_card.dart';
 import '../widgets/cycle_summary_card.dart';
 
 void showLegendDialog(BuildContext context) {
@@ -215,6 +216,8 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
+                const MoodCard(),
+                const SizedBox(height: 12),
                 const NoteCard(),
                 const SizedBox(height: 16),
                 const CycleSummaryCard(),

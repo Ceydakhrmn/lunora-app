@@ -22,6 +22,7 @@ class FirestorePaths {
   static const String cycleNotes = 'cycleNotes';
   static const String cycleHistory = 'cycleHistory';
   static const String waterIntake = 'waterIntake';
+  static const String cycleMoods = 'cycleMoods';
 
   // Sub-collection names (under posts/{postId})
   static const String likes = 'likes';
