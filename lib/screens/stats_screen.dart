@@ -45,7 +45,7 @@ class StatsScreen extends StatelessWidget {
             // ── Özet kartları ──
             Row(children: [
               _StatChip(
-                label: 'Ort. Döngü',
+                label: 'Ort. Süre',
                 value: '${_avg(cycleLens)} gün',
                 icon: Icons.loop,
                 color: kPurple,
@@ -60,7 +60,7 @@ class StatsScreen extends StatelessWidget {
               const SizedBox(width: 10),
               _StatChip(
                 label: 'Kayıt',
-                value: '${history.length} döngü',
+                value: '${history.length} kayıt',
                 icon: Icons.calendar_today,
                 color: kPurpleLight,
               ),
@@ -69,7 +69,7 @@ class StatsScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // ── Döngü uzunluğu grafiği ──
-            _SectionTitle(title: 'Son 6 Döngü Uzunluğu'),
+            _SectionTitle(title: 'Son 6 Adet Süresi'),
             const SizedBox(height: 10),
             _ChartCard(
               child: SizedBox(
@@ -222,7 +222,7 @@ class StatsScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // ── Döngü geçmişi tablosu ──
-            _SectionTitle(title: 'Döngü Geçmişi'),
+            _SectionTitle(title: 'Geçmiş'),
             const SizedBox(height: 10),
             if (history.isEmpty)
               Container(
@@ -249,7 +249,7 @@ class StatsScreen extends StatelessWidget {
                         Expanded(child: Text('Başlangıç', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Colors.black45))),
                         SizedBox(width: 8),
                         SizedBox(width: 70, child: Text('Regl', textAlign: TextAlign.center, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Colors.black45))),
-                        SizedBox(width: 70, child: Text('Döngü', textAlign: TextAlign.center, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Colors.black45))),
+                        SizedBox(width: 70, child: Text('Süre', textAlign: TextAlign.center, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Colors.black45))),
                       ]),
                     ),
                     const Divider(height: 1),

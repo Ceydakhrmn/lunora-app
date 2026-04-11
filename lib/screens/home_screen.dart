@@ -11,7 +11,6 @@ import '../widgets/month_header.dart';
 import '../widgets/info_card.dart';
 import '../widgets/note_card.dart';
 import '../widgets/cycle_summary_card.dart';
-import 'settings_screen.dart';
 
 void showLegendDialog(BuildContext context) {
   showDialog(
@@ -126,13 +125,6 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
           child: Row(
             children: [
-              IconButton(
-                icon: const Icon(Icons.settings_outlined, color: Color(0xFF7C3AED)),
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
-                ),
-              ),
               const Spacer(),
               IconButton(
                 icon: const Icon(Icons.info_outline, color: Color(0xFF7C3AED)),
@@ -188,11 +180,17 @@ class HomeScreen extends StatelessWidget {
                               ),
                             );
                           } else {
-                            provider.startPeriod(DateTime.now());
+                            final selected = provider.selectedDay;
+                            final startDate = selected ?? DateTime.now();
+                            provider.startPeriod(startDate);
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Regl başlatıldı!'),
-                                duration: Duration(seconds: 2),
+                              SnackBar(
+                                content: Text(
+                                  selected != null
+                                      ? '${startDate.day}/${startDate.month} tarihinden regl başlatıldı!'
+                                      : 'Regl başlatıldı!',
+                                ),
+                                duration: const Duration(seconds: 2),
                               ),
                             );
                           }

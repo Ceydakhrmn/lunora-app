@@ -68,6 +68,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       final uid = cred.user!.uid;
 
+      // Force-refresh the ID token so Firestore rules see request.auth
+      // immediately after account creation.
+      await cred.user!.getIdToken(true);
+
       try {
         await auth.userService.createUserProfile(
           uid: uid,
@@ -96,9 +100,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       await auth.authService.sendEmailVerification();
       // AuthGate routes to VerifyEmailScreen automatically.
     } on FirebaseAuthException catch (e) {
-      setState(() => _error = _mapError(e));
-    } catch (e) {
-      setState(() => _error = 'Kayıt başarısız: $e');
+      debugPrint('FirebaseAuthException: code=${e.code} msg=${e.message} plugin=${e.plugin}');
+      setState(() => _error = '[Auth:${e.code}] ${e.message ?? _mapError(e)}');
+    } on FirebaseException catch (e) {
+      debugPrint('FirebaseException: code=${e.code} msg=${e.message} plugin=${e.plugin}');
+      setState(() => _error = '[FS:${e.code}] ${e.message ?? _mapFirestoreError(e)}');
+    } catch (e, st) {
+      debugPrint('Register error: $e\n$st');
+      setState(() => _error = 'Hata: $e');
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -112,6 +121,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         return 'Yetki hatası. Lütfen daha sonra tekrar deneyin.';
       case 'deadline-exceeded':
         return 'İstek zaman aşımına uğradı. Tekrar deneyin.';
+      case 'unknown':
+        return 'Sunucu bağlantı hatası. İnternet bağlantınızı kontrol edip tekrar deneyin.';
       default:
         return 'Kayıt tamamlanamadı: ${e.code}';
     }

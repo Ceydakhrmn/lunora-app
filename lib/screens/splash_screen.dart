@@ -66,16 +66,15 @@ class DonguSplash extends StatelessWidget {
             const SizedBox(height: 60),
             // Başlık
             Text(
-              'DÖNGÜ',
+              'LUNORA',
               style: GoogleFonts.montserrat(
                 fontSize: 45,
-                fontWeight: FontWeight.w300, // Daha zarif bir görünüm için ince font
+                fontWeight: FontWeight.w300,
                 letterSpacing: 15.0,
                 color: const Color(0xFF5D5461),
               ),
             ),
             const SizedBox(height: 10),
-            // Alt Başlık
             Text(
               'Takip ve Sağlık',
               style: GoogleFonts.quicksand(

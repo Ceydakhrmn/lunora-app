@@ -91,7 +91,7 @@ class ExerciseCard extends StatelessWidget {
                   spacing: 6,
                   runSpacing: 6,
                   children: data.benefits.map((b) => Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
                       color: const Color(0xFFF3EEFF),
                       borderRadius: BorderRadius.circular(20),
@@ -100,8 +100,8 @@ class ExerciseCard extends StatelessWidget {
                       b,
                       style: const TextStyle(
                         fontSize: 11,
-                        color: Color(0xFF7C3AED),
-                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF4C1D95),
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   )).toList(),

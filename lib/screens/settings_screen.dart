@@ -99,14 +99,20 @@ class _NotificationsSection extends StatelessWidget {
     Future<void> update(NotificationPrefs newPrefs) async {
       if (user == null) return;
       try {
-        await auth.userService
-            .updateNotificationPrefs(user.uid, newPrefs);
+        await auth.userService.updateNotificationPrefs(user.uid, newPrefs);
       } catch (e) {
         if (context.mounted) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text('Kaydedilemedi: $e')));
         }
       }
+    }
+
+    String intervalLabel(int minutes) {
+      if (minutes < 60) return '$minutes dakika';
+      if (minutes == 60) return '1 saat';
+      if (minutes % 60 == 0) return '${minutes ~/ 60} saat';
+      return '${minutes ~/ 60} sa ${minutes % 60} dk';
     }
 
     return _Section(
@@ -133,10 +139,41 @@ class _NotificationsSection extends StatelessWidget {
         ),
         _SwitchRow(
           title: 'Egzersiz hatırlatıcısı',
-          subtitle: 'Haftada 2 kez egzersiz zamanı',
+          subtitle: 'Düzenli egzersiz zamanı hatırlatıcısı',
           value: prefs.exerciseReminder,
           onChanged: (v) => update(prefs.copyWith(exerciseReminder: v)),
         ),
+        if (prefs.exerciseReminder) ...[
+          const SizedBox(height: 8),
+          _subLabel(context, 'Her ${prefs.exerciseReminderIntervalDays} günde bir hatırlat'),
+          _SliderTile(
+            value: prefs.exerciseReminderIntervalDays.toDouble(),
+            min: 1,
+            max: 7,
+            divisions: 6,
+            label: '${prefs.exerciseReminderIntervalDays} gün',
+            onChanged: (v) => update(prefs.copyWith(exerciseReminderIntervalDays: v.round())),
+          ),
+        ],
+        const Divider(height: 24),
+        _SwitchRow(
+          title: 'Su içme hatırlatıcısı',
+          subtitle: 'Düzenli aralıklarla su iç',
+          value: prefs.waterReminder,
+          onChanged: (v) => update(prefs.copyWith(waterReminder: v)),
+        ),
+        if (prefs.waterReminder) ...[
+          const SizedBox(height: 8),
+          _subLabel(context, 'Hatırlatma sıklığı: ${intervalLabel(prefs.waterReminderIntervalMinutes)}'),
+          _SliderTile(
+            value: prefs.waterReminderIntervalMinutes.toDouble(),
+            min: 15,
+            max: 240,
+            divisions: 15,
+            label: intervalLabel(prefs.waterReminderIntervalMinutes),
+            onChanged: (v) => update(prefs.copyWith(waterReminderIntervalMinutes: v.round())),
+          ),
+        ],
       ],
     );
   }

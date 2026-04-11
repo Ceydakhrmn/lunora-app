@@ -12,7 +12,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appTitle => 'Lunora';
 
   @override
-  String get appSubtitle => 'Döngünü takip et, paylaş ve bağlan';
+  String get appSubtitle => 'Takip et, paylaş ve bağlan';
 
   @override
   String get calendarTab => 'Takvim';
@@ -302,7 +302,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get modePeriodTrack => 'Regl Takip';
 
   @override
-  String get modePeriodTrackDesc => 'Adet döngünüzü takip edin';
+  String get modePeriodTrackDesc => 'Adet takibinizi yapın';
 
   @override
   String get modePregnancy => 'Hamile Takip';
@@ -359,7 +359,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get cycleSection => 'Döngü';
 
   @override
-  String get cycleLengthLabel => 'Ortalama döngü uzunluğu';
+  String get cycleLengthLabel => 'Ortalama adet uzunluğu';
 
   @override
   String get periodLengthLabel => 'Regl süresi';

@@ -392,30 +392,56 @@ class CycleProvider extends ChangeNotifier {
     }
   }
 
-  // ── Phase lookup (unchanged logic) ──
+  // ── Phase lookup ──
   DayPhase phaseOf(DateTime date) {
     final d = DateTime(date.year, date.month, date.day);
-
     final actualStart = _periodActualStart;
-    if (actualStart != null) {
-      final start =
-          DateTime(actualStart.year, actualStart.month, actualStart.day);
-      final rangeEnd = _isPeriodActive
-          ? DateTime(
-              DateTime.now().year, DateTime.now().month, DateTime.now().day)
-          : (_periodEndDate != null
-              ? DateTime(_periodEndDate!.year, _periodEndDate!.month,
-                  _periodEndDate!.day)
-              : null);
 
-      if (rangeEnd != null && !d.isBefore(start) && !d.isAfter(rangeEnd)) {
-        final dayNum = d.difference(start).inDays + 1;
-        if (dayNum <= 2) return DayPhase.periodPeak;
-        if (dayNum <= 3) return DayPhase.periodMid;
-        return DayPhase.periodLight;
+    if (actualStart != null) {
+      final start = DateTime(actualStart.year, actualStart.month, actualStart.day);
+
+      if (_isPeriodActive) {
+        // Regl aktif: başlangıçtan bugüne kadar regl rengi,
+        // sonrasında da tahmini regl günleri + doğurganlık göster
+        final today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+
+        if (!d.isBefore(start) && !d.isAfter(today)) {
+          // Aktif regl günleri
+          final dayNum = d.difference(start).inDays + 1;
+          if (dayNum <= 2) return DayPhase.periodPeak;
+          if (dayNum <= 3) return DayPhase.periodMid;
+          return DayPhase.periodLight;
+        }
+
+        // Aktif regl bitmeden ileriki günler: cycleStart=actualStart baz alarak faz hesapla
+        return CycleModel(
+          cycleStart: start,
+          cycleLength: _cycleLength,
+          periodLength: _periodLength,
+        ).phaseOf(date);
+      } else {
+        // Regl bitti: gerçek regl aralığını boya
+        final endDate = _periodEndDate != null
+            ? DateTime(_periodEndDate!.year, _periodEndDate!.month, _periodEndDate!.day)
+            : start.add(Duration(days: _periodLength - 1));
+
+        if (!d.isBefore(start) && !d.isAfter(endDate)) {
+          final dayNum = d.difference(start).inDays + 1;
+          if (dayNum <= 2) return DayPhase.periodPeak;
+          if (dayNum <= 3) return DayPhase.periodMid;
+          return DayPhase.periodLight;
+        }
+
+        // Regl bittikten sonra doğurganlık/ovulasyon: actualStart baz alarak hesapla
+        return CycleModel(
+          cycleStart: start,
+          cycleLength: _cycleLength,
+          periodLength: _periodLength,
+        ).phaseOf(date);
       }
     }
 
+    // Hiç regl girilmemişse varsayılan hesap
     return cycle.phaseOf(date);
   }
 

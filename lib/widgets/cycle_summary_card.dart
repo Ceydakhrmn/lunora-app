@@ -57,7 +57,7 @@ class CycleSummaryCard extends StatelessWidget {
               child: Row(
                 children: [
                   const Text(
-                    'Genel Döngü Özetin',
+                    'Genel Özet',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w800,
@@ -77,7 +77,7 @@ class CycleSummaryCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Döngü Geçmişi',
+                  'Geçmiş',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
@@ -111,7 +111,7 @@ class CycleSummaryCard extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: isCurrentCycle
-                              ? 'Şu Anki Döngü: '
+                              ? 'Şu Anki Periyot: '
                               : '$actualLen Gün: ',
                           style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
@@ -180,7 +180,7 @@ class CycleSummaryCard extends StatelessWidget {
           ),
           const Divider(height: 1, indent: 16, endIndent: 16),
           _SummaryRow(
-            label: 'Normal Döngü Süresi',
+            label: 'Normal Adet Uzunluğu',
             value: '$cLen Gün',
           ),
 
