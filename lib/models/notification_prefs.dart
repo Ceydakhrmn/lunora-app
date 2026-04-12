@@ -3,6 +3,7 @@
 // =============================================
 
 class NotificationPrefs {
+  final bool appNotifications;
   final bool commentOnPost;
   final bool periodStart;
   final bool periodEnd;
@@ -12,6 +13,7 @@ class NotificationPrefs {
   final int waterReminderIntervalMinutes;
 
   const NotificationPrefs({
+    this.appNotifications = true,
     this.commentOnPost = true,
     this.periodStart = true,
     this.periodEnd = true,
@@ -22,6 +24,7 @@ class NotificationPrefs {
   });
 
   NotificationPrefs copyWith({
+    bool? appNotifications,
     bool? commentOnPost,
     bool? periodStart,
     bool? periodEnd,
@@ -31,6 +34,7 @@ class NotificationPrefs {
     int? waterReminderIntervalMinutes,
   }) {
     return NotificationPrefs(
+      appNotifications: appNotifications ?? this.appNotifications,
       commentOnPost: commentOnPost ?? this.commentOnPost,
       periodStart: periodStart ?? this.periodStart,
       periodEnd: periodEnd ?? this.periodEnd,
@@ -42,6 +46,7 @@ class NotificationPrefs {
   }
 
   Map<String, dynamic> toMap() => {
+        'appNotifications': appNotifications,
         'commentOnPost': commentOnPost,
         'periodStart': periodStart,
         'periodEnd': periodEnd,
@@ -54,6 +59,7 @@ class NotificationPrefs {
   factory NotificationPrefs.fromMap(Map<String, dynamic>? map) {
     if (map == null) return const NotificationPrefs();
     return NotificationPrefs(
+      appNotifications: map['appNotifications'] as bool? ?? true,
       commentOnPost: map['commentOnPost'] as bool? ?? true,
       periodStart: map['periodStart'] as bool? ?? true,
       periodEnd: map['periodEnd'] as bool? ?? true,

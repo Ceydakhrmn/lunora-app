@@ -23,10 +23,11 @@ class InfoCard extends StatelessWidget {
       phaseDescription = style.label;
     }
 
+    final cs = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
+        color: cs.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -37,17 +38,17 @@ class InfoCard extends StatelessWidget {
               children: [
                 Text(
                   label,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black87,
+                    color: cs.onSurface,
                   ),
                 ),
                 if (phaseDescription.isNotEmpty) ...[
                   const SizedBox(height: 2),
                   Text(
                     phaseDescription,
-                    style: const TextStyle(fontSize: 12, color: Colors.black45),
+                    style: TextStyle(fontSize: 12, color: cs.onSurface.withValues(alpha: 0.5)),
                   ),
                 ],
               ],

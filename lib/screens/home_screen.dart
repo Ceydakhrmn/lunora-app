@@ -1,8 +1,3 @@
-// =============================================
-// screens/home_screen.dart
-// Uygulamanın ana ekranı — takvimi içerir
-// =============================================
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cycle_provider.dart';
@@ -68,6 +63,38 @@ void showLegendDialog(BuildContext context) {
   );
 }
 
+void showMoodDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (ctx) => Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'Ruh Hali',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 12),
+            const MoodCard(),
+            const SizedBox(height: 8),
+            OutlinedButton(
+              onPressed: () => Navigator.pop(ctx),
+              style: OutlinedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24)),
+              ),
+              child: const Text('KAPAT'),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
 class _LegendRow extends StatelessWidget {
   final Color? color;
   final String label;
@@ -122,10 +149,15 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         Container(
-          color: const Color(0xFFF5F0FF),
+          color: Theme.of(context).colorScheme.surface,
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
           child: Row(
             children: [
+              IconButton(
+                icon: const Icon(Icons.mood, color: Color(0xFF7C3AED)),
+                onPressed: () => showMoodDialog(context),
+                tooltip: 'Ruh halini gir',
+              ),
               const Spacer(),
               IconButton(
                 icon: const Icon(Icons.info_outline, color: Color(0xFF7C3AED)),
@@ -197,7 +229,9 @@ class HomeScreen extends StatelessWidget {
                           }
                         },
                         icon: const Icon(Icons.water_drop, size: 16),
-                        label: Text(provider.isPeriodActive ? 'REGL BİTİR' : 'REGL BAŞLAT'),
+                        label: Text(provider.isPeriodActive
+                            ? 'REGL BİTİR'
+                            : 'REGL BAŞLAT'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF7C3AED),
                           foregroundColor: Colors.white,
@@ -216,8 +250,6 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-                const MoodCard(),
-                const SizedBox(height: 12),
                 const NoteCard(),
                 const SizedBox(height: 16),
                 const CycleSummaryCard(),

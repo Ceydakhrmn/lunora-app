@@ -33,11 +33,12 @@ class _NoteCardState extends State<NoteCard> {
       });
     }
 
+    final cs = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cs.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF7C3AED), width: 1.5),
+        border: Border.all(color: cs.primary, width: 1.5),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Column(
@@ -45,13 +46,13 @@ class _NoteCardState extends State<NoteCard> {
         children: [
           Row(
             children: [
-              const Icon(Icons.edit_note, size: 16, color: Color(0xFF7C3AED)),
+              Icon(Icons.edit_note, size: 16, color: cs.primary),
               const SizedBox(width: 6),
-              const Text(
+              Text(
                 'Not',
                 style: TextStyle(
                   fontSize: 12,
-                  color: Color(0xFF7C3AED),
+                  color: cs.primary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -64,12 +65,12 @@ class _NoteCardState extends State<NoteCard> {
             maxLines: null,
             minLines: 1,
             keyboardType: TextInputType.multiline,
-            style: const TextStyle(fontSize: 13, color: Colors.black87),
+            style: TextStyle(fontSize: 13, color: cs.onSurface),
             decoration: InputDecoration(
               hintText: selected == null
                   ? 'Önce bir gün seçin'
                   : 'Bugüne not ekle...',
-              hintStyle: const TextStyle(fontSize: 13, color: Colors.black38),
+              hintStyle: TextStyle(fontSize: 13, color: cs.onSurface.withValues(alpha: 0.35)),
               border: InputBorder.none,
               isDense: true,
               contentPadding: EdgeInsets.zero,

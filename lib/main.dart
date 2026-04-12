@@ -32,7 +32,6 @@ Future<void> main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-
     // Crashlytics is disabled automatically in debug builds to keep
     // dev noise out of the dashboard.
     await FirebaseCrashlytics.instance

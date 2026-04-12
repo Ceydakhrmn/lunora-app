@@ -27,8 +27,9 @@ class DayCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = backgroundColor ?? const Color(0xFFF1F1F1);
-    final fg = textColor ?? const Color(0xFF555555);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = backgroundColor ?? (isDark ? const Color(0xFF2D2840) : const Color(0xFFF1F1F1));
+    final fg = textColor ?? (isDark ? const Color(0xFFD1D5DB) : const Color(0xFF555555));
 
     return GestureDetector(
       onTap: isOtherMonth ? null : onTap,
@@ -40,9 +41,9 @@ class DayCell extends StatelessWidget {
           color: isOtherMonth ? Colors.transparent : bg,
           // Bugün için dış çizgi (outline)
           border: isToday && !isSelected
-              ? Border.all(color: Colors.black87, width: 2)
+              ? Border.all(color: isDark ? Colors.white70 : Colors.black87, width: 2)
               : isSelected
-                  ? Border.all(color: Colors.black, width: 2.5)
+                  ? Border.all(color: isDark ? Colors.white : Colors.black, width: 2.5)
                   : null,
         ),
         child: Center(
@@ -52,7 +53,7 @@ class DayCell extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w500,
               color: isOtherMonth
-                  ? Colors.grey.withOpacity(0.4)
+                  ? (isDark ? Colors.white24 : Colors.grey.withValues(alpha: 0.4))
                   : fg,
             ),
           ),

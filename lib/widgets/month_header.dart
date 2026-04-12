@@ -26,21 +26,21 @@ class MonthHeader extends StatelessWidget {
         IconButton(
           onPressed: provider.previousMonth,
           icon: const Icon(Icons.chevron_left),
-          color: Colors.grey[600],
+          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
         ),
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.5,
-            color: Colors.black87,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         IconButton(
           onPressed: provider.nextMonth,
           icon: const Icon(Icons.chevron_right),
-          color: Colors.grey[600],
+          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
         ),
       ],
     );

@@ -5,7 +5,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import '../providers/cycle_provider.dart';
 import '../utils/phase_colors.dart';
 import 'day_cell.dart';
@@ -32,7 +31,7 @@ class CalendarGrid extends StatelessWidget {
     return Column(
       children: [
         // ---- Haftanın günleri başlıkları ----
-        _buildWeekdayHeader(),
+        _buildWeekdayHeader(context),
         const SizedBox(height: 8),
 
         // ---- Gün hücreleri ----
@@ -88,7 +87,7 @@ class CalendarGrid extends StatelessWidget {
     );
   }
 
-  Widget _buildWeekdayHeader() {
+  Widget _buildWeekdayHeader(BuildContext context) {
     const days = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Pzr'];
     return Row(
       children: days
@@ -96,9 +95,9 @@ class CalendarGrid extends StatelessWidget {
                 child: Center(
                   child: Text(
                     d,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey,
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
                       fontWeight: FontWeight.w500,
                     ),
                   ),

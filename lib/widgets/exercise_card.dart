@@ -44,14 +44,18 @@ class ExerciseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE9D5FF), width: 1.5),
+        border: Border.all(
+          color: isDark ? const Color(0xFF3D2A5E) : const Color(0xFFE9D5FF),
+          width: 1.5,
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.purple.withValues(alpha: 0.07),
+            color: Colors.purple.withValues(alpha: isDark ? 0.15 : 0.07),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -69,20 +73,20 @@ class ExerciseCard extends StatelessWidget {
                 // Poz adı
                 Text(
                   data.name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
-                    color: Colors.black87,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: 6),
                 // "X nelere iyi gelir?" başlığı
                 Text(
                   '${data.name} nelere iyi gelir?',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF7C3AED),
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -91,17 +95,24 @@ class ExerciseCard extends StatelessWidget {
                   spacing: 6,
                   runSpacing: 6,
                   children: data.benefits.map((b) => Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF3EEFF),
+                      color: const Color(0xFF6D28D9),
                       borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF6D28D9).withValues(alpha: 0.45),
+                          blurRadius: 6,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Text(
                       b,
                       style: const TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFF4C1D95),
-                        fontWeight: FontWeight.w700,
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   )).toList(),
@@ -127,12 +138,12 @@ class ExerciseCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Nasıl yapılır?',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: Colors.black87,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -141,7 +152,7 @@ class ExerciseCard extends StatelessWidget {
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: data.steps.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 8),
+                    separatorBuilder: (_, _) => const SizedBox(width: 8),
                     itemBuilder: (context, i) => _StepCard(
                       number: i + 1,
                       text: data.steps[i],
@@ -165,13 +176,17 @@ class _StepCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: 140,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: const Color(0xFFFAF5FF),
+        color: isDark ? const Color(0xFF2D2840) : const Color(0xFFFAF5FF),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE9D5FF), width: 1),
+        border: Border.all(
+          color: isDark ? const Color(0xFF3D2A5E) : const Color(0xFFE9D5FF),
+          width: 1,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,9 +214,9 @@ class _StepCard extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 11,
-                color: Colors.black87,
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.85),
                 height: 1.35,
               ),
               maxLines: 3,

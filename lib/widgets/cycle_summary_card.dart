@@ -6,20 +6,20 @@ import '../screens/stats_screen.dart';
 class CycleSummaryCard extends StatelessWidget {
   const CycleSummaryCard({super.key});
 
-  static const Color kPurple     = Color(0xFF7C3AED);
-  static const Color kPurpleLight= Color(0xFFC084FC);
-  static const Color kBlue       = Color(0xFF3B82F6);
-  static const Color kGrey       = Color(0xFFE5E7EB);
+  static const Color kPurple      = Color(0xFF7C3AED);
+  static const Color kPurpleLight = Color(0xFFC084FC);
+  static const Color kBlue        = Color(0xFF3B82F6);
 
   @override
   Widget build(BuildContext context) {
+    final cs       = Theme.of(context).colorScheme;
+    final isDark   = Theme.of(context).brightness == Brightness.dark;
     final provider = context.watch<CycleProvider>();
     final now      = DateTime.now();
     final start    = provider.cycle.cycleStart;
     final cLen     = provider.cycleLength;
     final pLen     = provider.periodLength;
 
-    // Geçmiş döngüler (en fazla 3 tane, en yeni üstte)
     final List<DateTime> pastStarts = [];
     DateTime s = start;
     while (pastStarts.length < 3) {
@@ -31,12 +31,15 @@ class CycleSummaryCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cs.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE9D5FF), width: 1.2),
+        border: Border.all(
+          color: isDark ? const Color(0xFF3D2A5E) : const Color(0xFFE9D5FF),
+          width: 1.2,
+        ),
         boxShadow: [
           BoxShadow(
-            color: kPurple.withValues(alpha: 0.06),
+            color: kPurple.withValues(alpha: isDark ? 0.12 : 0.06),
             blurRadius: 12,
             offset: const Offset(0, 3),
           ),
@@ -56,12 +59,12 @@ class CycleSummaryCard extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
               child: Row(
                 children: [
-                  const Text(
+                  Text(
                     'Genel Özet',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w800,
-                      color: Colors.black87,
+                      color: cs.onSurface,
                     ),
                   ),
                   const Spacer(),
@@ -71,7 +74,7 @@ class CycleSummaryCard extends StatelessWidget {
             ),
           ),
 
-          // ── Döngü Geçmişi başlığı ──
+          // ── Geçmiş başlığı ──
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),
             child: Row(
@@ -81,22 +84,22 @@ class CycleSummaryCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: kPurple,
+                    color: cs.primary,
                   ),
                 ),
                 const SizedBox(width: 4),
-                Icon(Icons.chevron_right, color: kPurple, size: 16),
+                Icon(Icons.chevron_right, color: cs.primary, size: 16),
               ],
             ),
           ),
 
           // ── Döngü listesi ──
           ...pastStarts.asMap().entries.map((e) {
-            final idx        = e.key;
-            final cycleStart = e.value;
-            final cycleEnd   = cycleStart.add(Duration(days: cLen - 1));
+            final idx            = e.key;
+            final cycleStart     = e.value;
+            final cycleEnd       = cycleStart.add(Duration(days: cLen - 1));
             final isCurrentCycle = idx == 0;
-            final actualLen  = isCurrentCycle
+            final actualLen      = isCurrentCycle
                 ? now.difference(cycleStart).inDays + 1
                 : cLen;
 
@@ -107,7 +110,7 @@ class CycleSummaryCard extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
                   child: RichText(
                     text: TextSpan(
-                      style: const TextStyle(fontSize: 13, color: Colors.black87),
+                      style: TextStyle(fontSize: 13, color: cs.onSurface),
                       children: [
                         TextSpan(
                           text: isCurrentCycle
@@ -129,7 +132,10 @@ class CycleSummaryCard extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16, bottom: 2),
                   child: Text(
                     '$pLen günlük süre',
-                    style: const TextStyle(fontSize: 11, color: Colors.black45),
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: cs.onSurface.withValues(alpha: 0.45),
+                    ),
                   ),
                 ),
                 Padding(
@@ -138,15 +144,17 @@ class CycleSummaryCard extends StatelessWidget {
                     cycleLength: cLen,
                     periodLength: pLen,
                     filled: isCurrentCycle ? (now.difference(cycleStart).inDays + 1) : cLen,
+                    isDark: isDark,
                   ),
                 ),
                 if (idx < pastStarts.length - 1)
-                  const Divider(height: 1, indent: 16, endIndent: 16),
+                  Divider(height: 1, indent: 16, endIndent: 16,
+                      color: cs.onSurface.withValues(alpha: 0.1)),
               ],
             );
           }),
 
-          const Divider(height: 1),
+          Divider(height: 1, color: cs.onSurface.withValues(alpha: 0.1)),
 
           // ── Özet başlığı ──
           Padding(
@@ -158,11 +166,11 @@ class CycleSummaryCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: kPurple,
+                    color: cs.primary,
                   ),
                 ),
                 const SizedBox(width: 4),
-                Icon(Icons.chevron_right, color: kPurple, size: 16),
+                Icon(Icons.chevron_right, color: cs.primary, size: 16),
               ],
             ),
           ),
@@ -173,12 +181,14 @@ class CycleSummaryCard extends StatelessWidget {
             value: 'Başlangıç: ${_fmtFull(start)}',
             sub: '${daysAgo > 0 ? daysAgo : 0} Gün Önce',
           ),
-          const Divider(height: 1, indent: 16, endIndent: 16),
+          Divider(height: 1, indent: 16, endIndent: 16,
+              color: cs.onSurface.withValues(alpha: 0.1)),
           _SummaryRow(
             label: 'Normal Adet Süresi',
             value: '$pLen Gün',
           ),
-          const Divider(height: 1, indent: 16, endIndent: 16),
+          Divider(height: 1, indent: 16, endIndent: 16,
+              color: cs.onSurface.withValues(alpha: 0.1)),
           _SummaryRow(
             label: 'Normal Adet Uzunluğu',
             value: '$cLen Gün',
@@ -207,19 +217,19 @@ class CycleSummaryCard extends StatelessWidget {
 class _CycleBar extends StatelessWidget {
   final int cycleLength;
   final int periodLength;
-  final int filled; // kaç gün geçti
+  final int filled;
+  final bool isDark;
 
   const _CycleBar({
     required this.cycleLength,
     required this.periodLength,
     required this.filled,
+    required this.isDark,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Ovulasyon günü (döngü uzunluğu - 14)
-    final ovDay = cycleLength - 14;
-    // Doğurganlık penceresi: ovDay-5 → ovDay+1
+    final ovDay    = cycleLength - 14;
     final fertStart = ovDay - 5;
     final fertEnd   = ovDay + 1;
 
@@ -231,18 +241,15 @@ class _CycleBar extends StatelessWidget {
           Color col;
 
           if (day <= periodLength) {
-            // Regl — mor tonları
             col = day <= 2
                 ? const Color(0xFF7C3AED)
                 : const Color(0xFFC084FC);
           } else if (day >= fertStart && day <= fertEnd) {
-            // Doğurganlık + ovulasyon — mavi
             col = const Color(0xFF3B82F6);
           } else {
-            col = const Color(0xFFE5E7EB);
+            col = isDark ? const Color(0xFF3D3650) : const Color(0xFFE5E7EB);
           }
 
-          // Geçmemiş günler soluk
           final opacity = day <= filled ? 1.0 : 0.45;
 
           return Container(
@@ -270,24 +277,37 @@ class _SummaryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(fontSize: 12, color: Colors.black45)),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: cs.onSurface.withValues(alpha: 0.45),
+            ),
+          ),
           const SizedBox(height: 2),
           Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w700,
-              color: Colors.black87,
+              color: cs.onSurface,
             ),
           ),
           if (sub != null) ...[
             const SizedBox(height: 2),
-            Text(sub!, style: const TextStyle(fontSize: 11, color: Colors.black38)),
+            Text(
+              sub!,
+              style: TextStyle(
+                fontSize: 11,
+                color: cs.onSurface.withValues(alpha: 0.35),
+              ),
+            ),
           ],
         ],
       ),
