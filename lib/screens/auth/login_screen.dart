@@ -104,8 +104,9 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextFormField(
               controller: _emailCtrl,
-              keyboardType: TextInputType.emailAddress,
-              autofillHints: const [AutofillHints.email],
+              keyboardType: TextInputType.visiblePassword,
+              autocorrect: false,
+              enableSuggestions: false,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 prefixIcon: Icon(Icons.email_outlined),

@@ -22,7 +22,7 @@ class AppTheme {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.bgLight,
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.bgLight,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: AppColors.textPrimaryLight,
         centerTitle: false,

@@ -12,6 +12,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../core/theme/app_background.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/theme_provider.dart';
 import '../models/app_user.dart';
@@ -24,10 +25,12 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ayarlar'),
-      ),
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Ayarlar'),
+        ),
       body: ListView(
         children: const [
           _GeneralSettingsSection(),
@@ -36,6 +39,7 @@ class SettingsScreen extends StatelessWidget {
           _CycleSettingsSection(),
           SizedBox(height: 32),
         ],
+      ),
       ),
     );
   }

@@ -9,6 +9,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../core/theme/app_background.dart';
 import 'exercise_screen.dart';
 import 'home_screen.dart';
 import 'profile/profile_screen.dart';
@@ -48,9 +49,11 @@ class _MainShellState extends State<MainShell> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: false,
-      body: PageView(
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        extendBody: false,
+        body: PageView(
         controller: _pageController,
         physics: const ClampingScrollPhysics(),
         onPageChanged: (i) => setState(() => _index = i),
@@ -89,6 +92,7 @@ class _MainShellState extends State<MainShell> {
             label: '',
           ),
         ],
+      ),
       ),
     );
   }

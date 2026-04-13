@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/theme/app_background.dart';
 import '../../core/theme/app_colors.dart';
 import '../../providers/auth_provider.dart';
 import '../../services/user_service.dart';
@@ -219,9 +220,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profili Düzenle'),
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Profili Düzenle'),
         actions: [
           TextButton(
             onPressed: _loading ? null : _save,
@@ -332,6 +335,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ],
           ),
         ),
+      ),
       ),
     );
   }

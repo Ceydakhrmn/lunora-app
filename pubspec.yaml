@@ -44,6 +44,7 @@ flutter:
   assets:
     - assets/splash_bg.png
     - assets/logo.png
+    - assets/logo_new.png
     - assets/exercises/
     - assets/icon/
 

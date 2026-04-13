@@ -21,82 +21,105 @@ class AuthScaffold extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/splash_bg.png',
-            fit: BoxFit.cover,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: isDark
+                ? [
+                    const Color(0xFF1A1035),
+                    const Color(0xFF1E1540),
+                    const Color(0xFF12203A),
+                  ]
+                : [
+                    const Color(0xFFEDE8F8),
+                    const Color(0xFFE0EAFA),
+                    const Color(0xFFEAE4F7),
+                  ],
           ),
-          Container(
-            color: isDark
-                ? Colors.black.withValues(alpha: 0.55)
-                : Colors.white.withValues(alpha: 0.25),
-          ),
-          SafeArea(
-            child: Stack(
-              children: [
-                if (showBack)
-                  Positioned(
-                    top: 8,
-                    left: 8,
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back,
-                          color: isDark ? Colors.white70 : Colors.black54),
-                      onPressed: () => Navigator.of(context).maybePop(),
-                    ),
-                  ),
-                Center(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(24, 160, 24, 24),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        if (title != null) ...[
-                          const SizedBox(height: 24),
-                          Text(
-                            'Lunora',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 8,
-                              color: isDark ? Colors.white : const Color(0xFF5D5461),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            title!,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              color: isDark ? Colors.white : AppColors.textPrimaryLight,
-                            ),
-                          ),
-                        ],
-                        if (subtitle != null) ...[
-                          const SizedBox(height: 6),
-                          Text(
-                            subtitle!,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: isDark ? Colors.white70 : AppColors.textSecondaryLight,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 24),
-                        child,
-                      ],
-                    ),
+        ),
+        child: SafeArea(
+          child: Stack(
+            children: [
+              if (showBack)
+                Positioned(
+                  top: 8,
+                  left: 8,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back,
+                        color: isDark ? Colors.white70 : Colors.black54),
+                    onPressed: () => Navigator.of(context).maybePop(),
                   ),
                 ),
-              ],
-            ),
+              SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top -
+                        MediaQuery.of(context).padding.bottom -
+                        64,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (title != null) ...[
+                        Center(
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/logo_new.png',
+                              width: 140,
+                              height: 140,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Lunora',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 8,
+                            color: isDark ? Colors.white : const Color(0xFF5D5461),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          title!,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: isDark ? Colors.white : AppColors.textPrimaryLight,
+                          ),
+                        ),
+                      ],
+                      if (subtitle != null) ...[
+                        const SizedBox(height: 6),
+                        Text(
+                          subtitle!,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: isDark
+                                ? Colors.white70
+                                : AppColors.textSecondaryLight,
+                          ),
+                        ),
+                      ],
+                      const SizedBox(height: 28),
+                      child,
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

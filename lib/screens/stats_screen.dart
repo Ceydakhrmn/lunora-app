@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
+import '../core/theme/app_background.dart';
 import '../providers/cycle_provider.dart';
 
 class StatsScreen extends StatelessWidget {
@@ -18,8 +19,9 @@ class StatsScreen extends StatelessWidget {
     final periodLens = provider.lastPeriodLengths(n: 6);
     final history    = provider.cycleHistory;
 
-    return Scaffold(
-      backgroundColor: kBg,
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -282,6 +284,7 @@ class StatsScreen extends StatelessWidget {
             const SizedBox(height: 24),
           ],
         ),
+      ),
       ),
     );
   }

@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/theme/app_background.dart';
 import '../../core/theme/app_colors.dart';
 import '../../models/comment.dart';
 import '../../models/post.dart';
@@ -153,10 +154,12 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Paylaşım'),
-      ),
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Paylaşım'),
+        ),
       body: Column(
         children: [
           Expanded(
@@ -270,6 +273,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           ),
           _buildComposer(context),
         ],
+      ),
       ),
     );
   }

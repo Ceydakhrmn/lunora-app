@@ -9,6 +9,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../core/theme/app_background.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../models/post.dart';
@@ -132,10 +133,12 @@ class _ProfileScreenState extends State<ProfileScreen>
     final auth = context.watch<AuthProvider>();
     final user = auth.appUser;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profil'),
-      ),
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Profil'),
+        ),
       body: RefreshIndicator(
         onRefresh: _refresh,
         child: ListView(
@@ -274,6 +277,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               ),
           ],
         ),
+      ),
       ),
     );
   }

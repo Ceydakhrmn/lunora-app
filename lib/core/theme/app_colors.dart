@@ -14,11 +14,23 @@ class AppColors {
   static const Color primaryDark = Color(0xFF5B21B6);
 
   // ── Backgrounds ──
-  static const Color bgLight = Color(0xFFF5F0FF);
-  static const Color bgDark = Color(0xFF121017);
+  static const Color bgLight = Color(0xFFEDE8F8);
+  static const Color bgDark = Color(0xFF1A1035);
   static const Color surfaceLight = Colors.white;
   static const Color surfaceDark = Color(0xFF1E1B26);
   static const Color cardDark = Color(0xFF24202E);
+
+  // ── Background Gradients ──
+  static const List<Color> bgGradientLight = [
+    Color(0xFFEDE8F8),
+    Color(0xFFE0EAFA),
+    Color(0xFFEAE4F7),
+  ];
+  static const List<Color> bgGradientDark = [
+    Color(0xFF1A1035),
+    Color(0xFF1E1540),
+    Color(0xFF12203A),
+  ];
 
   // ── Text ──
   static const Color textPrimaryLight = Color(0xFF1A1A1A);
