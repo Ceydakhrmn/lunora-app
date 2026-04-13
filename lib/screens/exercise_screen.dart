@@ -12,11 +12,12 @@ class ExerciseScreen extends StatelessWidget {
     final mode = provider.appMode;
     final List<ExerciseData> exercises = _exercisesForMode(mode);
 
-    return Column(
+    return SafeArea(
+      child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Colors.transparent,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,6 +56,7 @@ class ExerciseScreen extends StatelessWidget {
           ),
         ),
       ],
+      ),
     );
   }
 

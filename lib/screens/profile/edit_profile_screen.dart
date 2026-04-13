@@ -309,20 +309,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         color: AppColors.danger, fontSize: 13)),
               ],
               const SizedBox(height: 40),
-              Divider(
-                color:
-                    AppColors.danger.withValues(alpha: 0.3),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Tehlikeli Bölge',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.danger,
-                ),
-              ),
-              const SizedBox(height: 8),
               OutlinedButton.icon(
                 onPressed: _loading ? null : _deleteAccount,
                 style: OutlinedButton.styleFrom(

@@ -22,23 +22,7 @@ class AuthScaffold extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: isDark
-                ? [
-                    const Color(0xFF1A1035),
-                    const Color(0xFF1E1540),
-                    const Color(0xFF12203A),
-                  ]
-                : [
-                    const Color(0xFFEDE8F8),
-                    const Color(0xFFE0EAFA),
-                    const Color(0xFFEAE4F7),
-                  ],
-          ),
-        ),
+        color: isDark ? AppColors.bgDark : Colors.white,
         child: SafeArea(
           child: Stack(
             children: [

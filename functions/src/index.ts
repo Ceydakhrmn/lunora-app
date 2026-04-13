@@ -124,24 +124,53 @@ export const onCommentCreated = onDocumentCreated(
   },
 );
 
-// ── 2. onPostLikeWrite → update authors likesReceived counter ──
+// ── 2. onPostLikeWrite → update likesReceived + notify post author ──
 export const onPostLikeWrite = onDocumentWritten(
   'posts/{postId}/likes/{uid}',
   async (event) => {
-    const { postId } = event.params as { postId: string; uid: string };
+    const { postId, uid } = event.params as { postId: string; uid: string };
 
     const before = event.data?.before?.exists;
     const after = event.data?.after?.exists;
     if (before === after) return;
 
     const postSnap = await db.collection('posts').doc(postId).get();
-    const authorId = postSnap.data()?.authorId as string | undefined;
+    const post = postSnap.data();
+    const authorId = post?.authorId as string | undefined;
     if (!authorId) return;
 
     const delta = after ? 1 : -1;
     await db.collection('users').doc(authorId).update({
       likesReceived: FieldValue.increment(delta),
     });
+
+    // Send push only when a new like is added (not removed), and not self-like
+    if (!after || authorId === uid) return;
+
+    const authorSnap = await db.collection('users').doc(authorId).get();
+    const authorData = authorSnap.data();
+    if (!authorData) return;
+
+    const prefs = (authorData.preferences?.notifications ?? {}) as NotificationPrefs;
+    if (prefs.commentOnPost === false) return; // reuse same pref toggle
+
+    const locale = authorData.preferences?.locale as string | undefined;
+
+    // Get liker's username
+    const likerSnap = await db.collection('users').doc(uid).get();
+    const likerUsername = likerSnap.data()?.username || '';
+
+    const copy = pickCopy(locale, {
+      tr: {
+        title: 'Paylaşımın beğenildi',
+        body: likerUsername ? `${likerUsername} paylaşımını beğendi` : 'Birisi paylaşımını beğendi',
+      },
+      en: {
+        title: 'Someone liked your post',
+        body: likerUsername ? `${likerUsername} liked your post` : 'Someone liked your post',
+      },
+    });
+    await sendToUser(authorId, copy);
   },
 );
 

@@ -146,7 +146,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.watch<CycleProvider>();
 
-    return Column(
+    return SafeArea(
+      child: Column(
       children: [
         Container(
           color: Theme.of(context).colorScheme.surface,
@@ -259,6 +260,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ],
+      ),
     );
   }
 }

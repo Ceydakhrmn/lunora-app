@@ -26,31 +26,56 @@ class SocialScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Sosyal'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'En Yeni'),
-              Tab(text: 'Popüler'),
-            ],
-          ),
-        ),
-        body: const TabBarView(
+      child: SafeArea(
+        child: Stack(
           children: [
-            _FeedList(mode: _FeedMode.latest),
-            _FeedList(mode: _FeedMode.popularThisMonth),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Sosyal',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black87,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const TabBar(
+                  tabs: [
+                    Tab(text: 'En Yeni'),
+                    Tab(text: 'Popüler'),
+                  ],
+                ),
+                const Expanded(
+                  child: TabBarView(
+                    children: [
+                      _FeedList(mode: _FeedMode.latest),
+                      _FeedList(mode: _FeedMode.popularThisMonth),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              bottom: 16,
+              right: 16,
+              child: FloatingActionButton(
+                backgroundColor: AppColors.primary,
+                onPressed: () async {
+                  await showCreatePostSheet(context);
+                },
+                child: const Icon(Icons.add, color: Colors.white),
+              ),
+            ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.primary,
-          onPressed: () async {
-            final created = await showCreatePostSheet(context);
-            if (created == true) {
-              // Feeds re-trigger via user action; nothing else needed.
-            }
-          },
-          child: const Icon(Icons.add, color: Colors.white),
         ),
       ),
     );

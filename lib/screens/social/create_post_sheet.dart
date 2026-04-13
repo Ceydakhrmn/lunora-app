@@ -19,6 +19,7 @@ Future<bool?> showCreatePostSheet(BuildContext context, {Post? editPost}) {
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
+    useRootNavigator: true,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
     ),
