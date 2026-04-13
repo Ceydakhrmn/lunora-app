@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cycle_provider.dart';
 import '../widgets/calendar_grid.dart';
+import 'symptom_sheet.dart';
 import '../widgets/month_header.dart';
 import '../widgets/info_card.dart';
 import '../widgets/note_card.dart';
@@ -183,11 +184,11 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () => showSymptomSheet(context),
                         icon: const Icon(Icons.add, size: 16),
                         label: const Text('BELİRTİ GİR'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF22c55e),
+                          backgroundColor: const Color(0xFFA78BFA),
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(

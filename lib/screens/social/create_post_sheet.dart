@@ -23,9 +23,9 @@ Future<bool?> showCreatePostSheet(BuildContext context, {Post? editPost}) {
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
     ),
-    builder: (_) => Padding(
+    builder: (sheetContext) => Padding(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
+        bottom: MediaQuery.of(sheetContext).viewInsets.bottom,
       ),
       child: _CreatePostSheet(editPost: editPost),
     ),
@@ -154,8 +154,10 @@ class _CreatePostSheetState extends State<_CreatePostSheet> {
             maxLines: 8,
             minLines: 4,
             autofocus: true,
+            style: const TextStyle(color: Colors.black87),
             decoration: const InputDecoration(
               hintText: 'Ne düşünüyorsun?',
+              hintStyle: TextStyle(color: Colors.black45),
               border: OutlineInputBorder(),
             ),
           ),

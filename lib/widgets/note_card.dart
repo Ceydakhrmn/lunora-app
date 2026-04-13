@@ -23,6 +23,7 @@ class _NoteCardState extends State<NoteCard> {
   Widget build(BuildContext context) {
     final provider = context.watch<CycleProvider>();
     final selected = provider.selectedDay;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     if (selected != _loadedDay) {
       _loadedDay = selected;
@@ -34,6 +35,9 @@ class _NoteCardState extends State<NoteCard> {
     }
 
     final cs = Theme.of(context).colorScheme;
+    final textColor = isDark ? Colors.white : Colors.black87;
+    final hintColor = isDark ? Colors.white54 : Colors.black38;
+
     return Container(
       decoration: BoxDecoration(
         color: cs.surface,
@@ -65,13 +69,18 @@ class _NoteCardState extends State<NoteCard> {
             maxLines: null,
             minLines: 1,
             keyboardType: TextInputType.multiline,
-            style: TextStyle(fontSize: 13, color: cs.onSurface),
+            style: TextStyle(fontSize: 13, color: textColor),
             decoration: InputDecoration(
               hintText: selected == null
                   ? 'Önce bir gün seçin'
                   : 'Bugüne not ekle...',
-              hintStyle: TextStyle(fontSize: 13, color: cs.onSurface.withValues(alpha: 0.35)),
+              hintStyle: TextStyle(fontSize: 13, color: hintColor),
               border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              filled: true,
+              fillColor: Colors.transparent,
               isDense: true,
               contentPadding: EdgeInsets.zero,
             ),
