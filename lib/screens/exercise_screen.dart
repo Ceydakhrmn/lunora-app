@@ -12,75 +12,104 @@ class ExerciseScreen extends StatefulWidget {
 
 class _ExerciseScreenState extends State<ExerciseScreen> {
   int _trimester = 1;
+  bool _warningExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<CycleProvider>();
     final mode = provider.appMode;
     final exercises = _exercisesForMode(mode, _trimester);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Başlık + trimester seçici ──
-          Container(
-            color: Colors.transparent,
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+          // ── Başlık satırı ──
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Sol: başlık + alt başlık
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _titleForMode(mode),
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black87,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        _subtitleForMode(mode, _trimester),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white.withValues(alpha: 0.55)
-                              : Colors.black45,
-                        ),
-                      ),
-                    ],
+                Text(
+                  _titleForMode(mode),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: isDark ? Colors.white : Colors.black87,
                   ),
                 ),
-                // Sağ üst: trimester seçici (sadece hamileTakip modunda)
+                const Spacer(),
+                // Uyarı butonu — sadece hamileTakip modunda
                 if (mode == AppMode.hamileTakip)
-                  _TrimesterPicker(
-                    selected: _trimester,
-                    onChanged: (t) => setState(() => _trimester = t),
+                  GestureDetector(
+                    onTap: () => setState(() => _warningExpanded = !_warningExpanded),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: _warningExpanded
+                            ? const Color(0xFFFBBF24)
+                            : (isDark ? const Color(0xFF2C1A1A) : const Color(0xFFFFF7ED)),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: const Color(0xFFFBBF24),
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.warning_amber_rounded,
+                        size: 20,
+                        color: _warningExpanded
+                            ? Colors.white
+                            : const Color(0xFFF59E0B),
+                      ),
+                    ),
                   ),
               ],
             ),
           ),
 
+          // ── Trimester seçici (hamileTakip) — başlığın hemen altında tam genişlik ──
+          if (mode == AppMode.hamileTakip) ...[
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: _TrimesterPicker(
+                selected: _trimester,
+                onChanged: (t) => setState(() => _trimester = t),
+              ),
+            ),
+          ],
+
+          // ── Alt başlık (regl / doğurganlık) ──
+          if (mode != AppMode.hamileTakip)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+              child: Text(
+                _subtitleForMode(mode),
+                style: TextStyle(
+                  fontSize: 13,
+                  color: isDark ? Colors.white.withValues(alpha: 0.55) : Colors.black45,
+                ),
+              ),
+            ),
+
+          const SizedBox(height: 8),
+
+          // ── Açılır uyarı paneli ──
+          if (mode == AppMode.hamileTakip && _warningExpanded)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: const _PregnancyWarningCard(),
+            ),
+
           // ── Egzersiz listesi ──
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.all(16),
-              itemCount: exercises.length + (mode == AppMode.hamileTakip ? 1 : 0),
+              itemCount: exercises.length,
               separatorBuilder: (_, _) => const SizedBox(height: 12),
-              itemBuilder: (context, index) {
-                if (mode == AppMode.hamileTakip && index == 0) {
-                  return const _PregnancyWarningCard();
-                }
-                final i = mode == AppMode.hamileTakip ? index - 1 : index;
-                return ExerciseCard(data: exercises[i]);
-              },
+              itemBuilder: (context, index) => ExerciseCard(data: exercises[index]),
             ),
           ),
         ],
@@ -96,14 +125,11 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
     }
   }
 
-  String _subtitleForMode(AppMode mode, int trimester) {
+  String _subtitleForMode(AppMode mode) {
     switch (mode) {
-      case AppMode.reglTakip:
-        return 'Sancıları azaltmaya yardımcı hafif hareketler';
-      case AppMode.hamileTakip:
-        return '$trimester. trimester için güvenli egzersizler';
-      case AppMode.hamilleKalma:
-        return 'Pelvik taban ve kan dolaşımını destekleyen hareketler';
+      case AppMode.reglTakip:    return 'Sancıları azaltmaya yardımcı hafif hareketler';
+      case AppMode.hamileTakip:  return '';
+      case AppMode.hamilleKalma: return 'Pelvik taban ve kan dolaşımını destekleyen hareketler';
     }
   }
 
@@ -454,6 +480,7 @@ class _TrimesterPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
+      width: double.infinity,
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF2D2840) : const Color(0xFFF3E8FF),
         borderRadius: BorderRadius.circular(20),
@@ -462,28 +489,30 @@ class _TrimesterPicker extends StatelessWidget {
           width: 1,
         ),
       ),
-      padding: const EdgeInsets.all(3),
+      padding: const EdgeInsets.all(4),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         children: [1, 2, 3].map((t) {
           final isSelected = selected == t;
-          return GestureDetector(
-            onTap: () => onChanged(t),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 180),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFF7C3AED) : Colors.transparent,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Text(
-                '$t. T',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: isSelected
-                      ? Colors.white
-                      : (isDark ? Colors.white54 : const Color(0xFF7C3AED)),
+          return Expanded(
+            child: GestureDetector(
+              onTap: () => onChanged(t),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                padding: const EdgeInsets.symmetric(vertical: 9),
+                decoration: BoxDecoration(
+                  color: isSelected ? const Color(0xFF7C3AED) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Text(
+                  '$t. Trimester',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: isSelected
+                        ? Colors.white
+                        : (isDark ? Colors.white54 : const Color(0xFF7C3AED)),
+                  ),
                 ),
               ),
             ),
