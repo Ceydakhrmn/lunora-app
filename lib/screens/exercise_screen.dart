@@ -493,26 +493,44 @@ class _TrimesterPicker extends StatelessWidget {
       child: Row(
         children: [1, 2, 3].map((t) {
           final isSelected = selected == t;
+          final weeks = t == 1 ? '0–12. hafta' : t == 2 ? '13–27. hafta' : '28–40. hafta';
           return Expanded(
             child: GestureDetector(
               onTap: () => onChanged(t),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
-                padding: const EdgeInsets.symmetric(vertical: 9),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 decoration: BoxDecoration(
                   color: isSelected ? const Color(0xFF7C3AED) : Colors.transparent,
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Text(
-                  '$t. Trimester',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: isSelected
-                        ? Colors.white
-                        : (isDark ? Colors.white54 : const Color(0xFF7C3AED)),
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '$t. Trimester',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: isSelected
+                            ? Colors.white
+                            : (isDark ? Colors.white54 : const Color(0xFF7C3AED)),
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      weeks,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                        color: isSelected
+                            ? Colors.white.withValues(alpha: 0.8)
+                            : (isDark ? Colors.white38 : const Color(0xFFA78BFA)),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
