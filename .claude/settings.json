@@ -14,7 +14,8 @@
       "Bash(./gradlew signingReport)",
       "Bash(dart run:*)",
       "Bash(npm run:*)",
-      "Bash(firebase deploy:*)"
+      "Bash(firebase deploy:*)",
+      "Bash(dart analyze:*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\ceyda\\ajanda-app\\src\\app\\flutter\\android\\app\\src\\main\\kotlin\\com\\example"

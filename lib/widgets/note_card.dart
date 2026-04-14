@@ -11,7 +11,11 @@ class NoteCard extends StatefulWidget {
 
 class _NoteCardState extends State<NoteCard> {
   final TextEditingController _noteController = TextEditingController();
-  DateTime? _loadedDay;
+  String? _loadedDayKey;
+
+  String _dayKey(DateTime? d) => d == null
+      ? ''
+      : '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
 
   @override
   void dispose() {
@@ -25,10 +29,12 @@ class _NoteCardState extends State<NoteCard> {
     final selected = provider.selectedDay;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    if (selected != _loadedDay) {
-      _loadedDay = selected;
+    final currentKey = _dayKey(selected);
+    if (currentKey != _loadedDayKey) {
+      _loadedDayKey = currentKey;
       final existing = selected != null ? provider.noteForDay(selected) : '';
       WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
         _noteController.text = existing;
         _noteController.selection = TextSelection.collapsed(offset: existing.length);
       });

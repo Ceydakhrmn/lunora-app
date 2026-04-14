@@ -1,20 +1,36 @@
 import 'package:flutter/material.dart';
 
 enum ExerciseType {
-  bow,               // Yay pozu
-  recliningGoddess,  // Yatarak Tanrıça
-  legsUpWall,        // Bacaklar duvara
-  camel,             // Deve pozu
-  downDog,           // Aşağı bakan köpek
-  child,             // Çocuk pozu
-  butterfly,         // Kelebek pozu
+  // Regl
+  bow,
+  recliningGoddess,
+  legsUpWall,
+  camel,
+  downDog,
+  child,
+  butterfly,
+  // 1. Trimester
+  oturanKediInek,
+  yanVucutEstretme,
+  asagiBakanKopek,
+  tersSavasci,
+  // 2. Trimester
+  sandakyeDurusu,
+  tanricaComelmesi,
+  genisBacakliOneEgilme,
+  tersSavasci2,
+  // 3. Trimester
+  dizlerAcikCocukPozu,
+  destekliComelme,
+  topUzerindeKalcaDaireleri,
+  duvara,
 }
 
 class ExerciseData {
   final String name;
   final String description;
-  final List<String> benefits;   // nelere iyi gelir
-  final List<String> steps;      // nasıl yapılır (adım adım)
+  final List<String> benefits;
+  final List<String> steps;
   final ExerciseType type;
 
   const ExerciseData({
@@ -28,13 +44,25 @@ class ExerciseData {
 
 String exerciseImagePath(ExerciseType type) {
   switch (type) {
-    case ExerciseType.bow:              return 'assets/exercises/bow.jpeg';
-    case ExerciseType.recliningGoddess: return 'assets/exercises/reclining_goddess.jpeg';
-    case ExerciseType.legsUpWall:       return 'assets/exercises/legs_up_wall.jpeg';
-    case ExerciseType.camel:            return 'assets/exercises/camel.jpeg';
-    case ExerciseType.downDog:          return 'assets/exercises/down_dog.jpeg';
-    case ExerciseType.child:            return 'assets/exercises/child.jpeg';
-    case ExerciseType.butterfly:        return 'assets/exercises/butterfly.jpeg';
+    case ExerciseType.bow:                      return 'assets/exercises/bow.jpeg';
+    case ExerciseType.recliningGoddess:         return 'assets/exercises/reclining_goddess.jpeg';
+    case ExerciseType.legsUpWall:               return 'assets/exercises/legs_up_wall.jpeg';
+    case ExerciseType.camel:                    return 'assets/exercises/camel.jpeg';
+    case ExerciseType.downDog:                  return 'assets/exercises/down_dog.jpeg';
+    case ExerciseType.child:                    return 'assets/exercises/child.jpeg';
+    case ExerciseType.butterfly:                return 'assets/exercises/butterfly.jpeg';
+    case ExerciseType.oturanKediInek:           return 'assets/exercises/oturan_kedi_inek.jpeg';
+    case ExerciseType.yanVucutEstretme:         return 'assets/exercises/yan_vücut_esnetme.jpeg';
+    case ExerciseType.asagiBakanKopek:          return 'assets/exercises/asagı_bakan_köpek.jpeg';
+    case ExerciseType.tersSavasci:              return 'assets/exercises/ters_savascı.jpeg';
+    case ExerciseType.sandakyeDurusu:           return 'assets/exercises/sandalye_durusu.jpeg';
+    case ExerciseType.tanricaComelmesi:         return 'assets/exercises/tanrıca_cömelmesi.jpeg';
+    case ExerciseType.genisBacakliOneEgilme:    return 'assets/exercises/genis_bacaklı_öne_eğilme.jpeg';
+    case ExerciseType.tersSavasci2:             return 'assets/exercises/ters_savascı-2.jpeg';
+    case ExerciseType.dizlerAcikCocukPozu:      return 'assets/exercises/dizler_acık_cocuk_pozu.jpeg';
+    case ExerciseType.destekliComelme:          return 'assets/exercises/destekli_cömelme.jpeg';
+    case ExerciseType.topUzerindeKalcaDaireleri:return 'assets/exercises/top_üzerinde_kalca_daireleri.jpeg';
+    case ExerciseType.duvara:                   return 'assets/exercises/duvara.jpeg';
   }
 }
 
@@ -64,13 +92,11 @@ class ExerciseCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── 1. Poz adı + nelere iyi gelir ──
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Poz adı
                 Text(
                   data.name,
                   style: TextStyle(
@@ -80,7 +106,6 @@ class ExerciseCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 6),
-                // "X nelere iyi gelir?" başlığı
                 Text(
                   '${data.name} nelere iyi gelir?',
                   style: TextStyle(
@@ -90,7 +115,6 @@ class ExerciseCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 6),
-                // Etiketler
                 Wrap(
                   spacing: 6,
                   runSpacing: 6,
@@ -121,7 +145,6 @@ class ExerciseCard extends StatelessWidget {
             ),
           ),
 
-          // ── 2. Fotoğraf ──
           ClipRRect(
             child: SizedBox(
               width: double.infinity,
@@ -132,7 +155,6 @@ class ExerciseCard extends StatelessWidget {
             ),
           ),
 
-          // ── 3. Nasıl yapılır ──
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
             child: Column(
