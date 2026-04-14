@@ -42,8 +42,9 @@ class CycleModel {
 
   /// Verilen tarihin döngü içindeki kaçıncı gün olduğunu döner (1'den başlar)
   int dayOfCycle(DateTime date) {
-    final diff = date.difference(cycleStart).inDays % cycleLength;
-    return diff < 0 ? diff + cycleLength : diff + 1;
+    final diff = date.difference(cycleStart).inDays;
+    final mod = diff % cycleLength;
+    return (mod < 0 ? mod + cycleLength : mod) + 1;
   }
 
   /// Verilen tarihin fazını hesaplar
@@ -56,7 +57,7 @@ class CycleModel {
     if (day == 3) return DayPhase.periodMid;
     if (day <= periodLength) return DayPhase.periodLight;
 
-    // Ovulasyon günü: döngünün tam ortası (28 günlük döngüde 14. gün)
+    // Ovulasyon günü: döngü bitişinden 14 gün önce (standart luteal faz)
     final ovulationDay = cycleLength - 14;
     if (day == ovulationDay) return DayPhase.ovulation;
 

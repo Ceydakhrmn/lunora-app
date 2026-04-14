@@ -78,8 +78,8 @@ class _NoteCardState extends State<NoteCard> {
             style: TextStyle(fontSize: 13, color: textColor),
             decoration: InputDecoration(
               hintText: selected == null
-                  ? 'Önce bir gün seçin'
-                  : 'Bugüne not ekle...',
+                  ? 'Takvimden bir gün seç...'
+                  : 'Notunu buraya yaz...',
               hintStyle: TextStyle(fontSize: 13, color: hintColor),
               border: InputBorder.none,
               enabledBorder: InputBorder.none,

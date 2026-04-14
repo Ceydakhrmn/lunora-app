@@ -444,24 +444,29 @@ class CycleProvider extends ChangeNotifier {
       final start = DateTime(actualStart.year, actualStart.month, actualStart.day);
 
       if (_isPeriodActive) {
-        // Regl aktif: başlangıçtan bugüne kadar regl rengi,
-        // sonrasında da tahmini regl günleri + doğurganlık göster
-        final today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+        // Regl aktif: başlangıçtan periodLength gün boyunca regl rengi
+        final periodEnd = start.add(Duration(days: _periodLength - 1));
 
-        if (!d.isBefore(start) && !d.isAfter(today)) {
-          // Aktif regl günleri
+        if (!d.isBefore(start) && !d.isAfter(periodEnd)) {
+          // Aktif regl günleri (tüm periodLength günü)
           final dayNum = d.difference(start).inDays + 1;
           if (dayNum <= 2) return DayPhase.periodPeak;
           if (dayNum <= 3) return DayPhase.periodMid;
           return DayPhase.periodLight;
         }
 
-        // Aktif regl bitmeden ileriki günler: cycleStart=actualStart baz alarak faz hesapla
-        return CycleModel(
-          cycleStart: start,
+        // Regl bittikten sonraki günler: ovulasyon/doğurganlık göster
+        // Bir sonraki döngü başlangıcını baz al (start + cycleLength)
+        final nextCycleStart = start.add(Duration(days: _cycleLength));
+        final model = CycleModel(
+          cycleStart: nextCycleStart,
           cycleLength: _cycleLength,
           periodLength: _periodLength,
-        ).phaseOf(date);
+        );
+        final dayInNextCycle = model.dayOfCycle(date);
+        // Bir sonraki döngünün regl günlerini henüz gösterme
+        if (dayInNextCycle <= _periodLength) return DayPhase.none;
+        return model.phaseOf(date);
       } else {
         // Regl bitti: gerçek regl aralığını boya
         final endDate = _periodEndDate != null
@@ -476,11 +481,16 @@ class CycleProvider extends ChangeNotifier {
         }
 
         // Regl bittikten sonra doğurganlık/ovulasyon: actualStart baz alarak hesapla
-        return CycleModel(
+        // Regl günlerini (1..periodLength) tekrar renklendirme — zaten yukarıda renklendirildi.
+        final model = CycleModel(
           cycleStart: start,
           cycleLength: _cycleLength,
           periodLength: _periodLength,
-        ).phaseOf(date);
+        );
+        final phase = model.phaseOf(date);
+        final dayInCycle = model.dayOfCycle(date);
+        if (dayInCycle <= _periodLength) return DayPhase.none;
+        return phase;
       }
     }
 
