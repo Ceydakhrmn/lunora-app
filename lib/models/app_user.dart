@@ -74,7 +74,7 @@ class AppUser {
     required this.createdAt,
     this.postCount = 0,
     this.likesReceived = 0,
-    this.appMode = 'reglTakip',
+    this.appMode = '',
     this.preferences = const UserPreferences(),
   });
 
@@ -127,7 +127,7 @@ class AppUser {
           (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
       postCount: (data['postCount'] as num?)?.toInt() ?? 0,
       likesReceived: (data['likesReceived'] as num?)?.toInt() ?? 0,
-      appMode: data['appMode'] as String? ?? 'reglTakip',
+      appMode: data['appMode'] as String? ?? '',
       preferences: UserPreferences.fromMap(
         data['preferences'] as Map<String, dynamic>?,
       ),

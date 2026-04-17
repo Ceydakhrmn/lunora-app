@@ -15,6 +15,7 @@ import '../../providers/auth_provider.dart';
 import '../../screens/auth/login_screen.dart';
 import '../../screens/auth/verify_email_screen.dart';
 import '../../screens/main_shell.dart';
+import '../../screens/onboarding/mode_selection_screen.dart';
 import '../../screens/splash_screen.dart';
 
 class AuthGate extends StatelessWidget {
@@ -30,6 +31,8 @@ class AuthGate extends StatelessWidget {
         return const LoginScreen();
       case AuthStatus.needsVerification:
         return const VerifyEmailScreen();
+      case AuthStatus.needsOnboarding:
+        return const ModeSelectionScreen();
       case AuthStatus.authenticated:
         return const MainShell();
     }

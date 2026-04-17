@@ -28,6 +28,9 @@ enum AuthStatus {
   /// Firebase user exists but email is not yet verified.
   needsVerification,
 
+  /// Authenticated but no app mode selected yet — show onboarding.
+  needsOnboarding,
+
   /// Fully authenticated — show MainShell.
   authenticated,
 }
@@ -102,7 +105,9 @@ class AuthProvider extends ChangeNotifier {
     // Live-subscribe to user doc for preference updates.
     _userDocSub = _userService.userStream(user.uid).listen((appUser) {
       _appUser = appUser;
-      _status = AuthStatus.authenticated;
+      _status = (appUser?.appMode.isEmpty ?? true)
+          ? AuthStatus.needsOnboarding
+          : AuthStatus.authenticated;
       notifyListeners();
     });
 
