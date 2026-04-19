@@ -16,6 +16,18 @@ class _ModeSelectionScreenState extends State<ModeSelectionScreen> {
   String? _selected;
   bool _loading = false;
 
+  @override
+  void initState() {
+    super.initState();
+    // Pre-select the returning user's last-used mode so they can just
+    // tap DEVAM ET to continue.
+    final auth = context.read<AuthProvider>();
+    final existingMode = auth.appUser?.appMode ?? '';
+    if (existingMode.isNotEmpty) {
+      _selected = existingMode;
+    }
+  }
+
   static const _modes = [
     _ModeOption(
       value: 'reglTakip',
@@ -43,11 +55,22 @@ class _ModeSelectionScreenState extends State<ModeSelectionScreen> {
   Future<void> _confirm() async {
     if (_selected == null) return;
     setState(() => _loading = true);
-    final auth = context.read<AuthProvider>();
-    final uid = auth.appUser?.uid;
-    if (uid == null) return;
-    await auth.userService.updateAppMode(uid, _selected!);
-    if (mounted) setState(() => _loading = false);
+    try {
+      final auth = context.read<AuthProvider>();
+      final uid = auth.appUser?.uid;
+      if (uid == null) return;
+      await auth.userService.updateAppMode(uid, _selected!);
+      // Mark this session as confirmed so AuthGate transitions to MainShell.
+      auth.confirmModeForSession();
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Kaydedilemedi: $e')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
   }
 
   @override
@@ -75,10 +98,28 @@ class _ModeSelectionScreenState extends State<ModeSelectionScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 48),
-                Text(
-                  '🌙',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 52),
+                Center(
+                  child: Container(
+                    width: 110,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withValues(alpha: 0.18),
+                          blurRadius: 20,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
+                    ),
+                    child: ClipOval(
+                      child: Image.asset(
+                        'assets/logo_new.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -236,8 +277,8 @@ class _ModeCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: selected
-                  ? mode.color.withOpacity(0.15)
-                  : Colors.black.withOpacity(0.04),
+                  ? mode.color.withValues(alpha:0.15)
+                  : Colors.black.withValues(alpha:0.04),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -249,7 +290,7 @@ class _ModeCard extends StatelessWidget {
               width: 52,
               height: 52,
               decoration: BoxDecoration(
-                color: mode.color.withOpacity(0.12),
+                color: mode.color.withValues(alpha:0.12),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Center(

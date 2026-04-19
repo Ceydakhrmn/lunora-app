@@ -57,6 +57,10 @@ class AuthProvider extends ChangeNotifier {
   fb.User? _firebaseUser;
   AppUser? _appUser;
 
+  /// Resets on each sign-in. The ModeSelectionScreen appears every session,
+  /// even for returning users, until they confirm their mode for the session.
+  bool _sessionModeConfirmed = false;
+
   // ── Getters ──
   AuthStatus get status => _status;
   fb.User? get firebaseUser => _firebaseUser;
@@ -74,6 +78,7 @@ class AuthProvider extends ChangeNotifier {
 
     if (user == null) {
       _appUser = null;
+      _sessionModeConfirmed = false;
       _status = AuthStatus.loggedOut;
       notifyListeners();
       return;
@@ -105,7 +110,10 @@ class AuthProvider extends ChangeNotifier {
     // Live-subscribe to user doc for preference updates.
     _userDocSub = _userService.userStream(user.uid).listen((appUser) {
       _appUser = appUser;
-      _status = (appUser?.appMode.isEmpty ?? true)
+      // Show ModeSelectionScreen every session until the user confirms
+      // their mode for this session, even if they already have an appMode saved.
+      final hasNoMode = appUser?.appMode.isEmpty ?? true;
+      _status = (hasNoMode || !_sessionModeConfirmed)
           ? AuthStatus.needsOnboarding
           : AuthStatus.authenticated;
       notifyListeners();
@@ -122,6 +130,16 @@ class AuthProvider extends ChangeNotifier {
   Future<void> signOut() async {
     await _fcmService.deleteCurrentDeviceToken();
     await _authService.signOut();
+  }
+
+  /// Called by ModeSelectionScreen after the user picks a mode for this
+  /// session. Transitions the app to `authenticated` so AuthGate shows MainShell.
+  void confirmModeForSession() {
+    _sessionModeConfirmed = true;
+    if (_appUser != null && !(_appUser!.appMode.isEmpty)) {
+      _status = AuthStatus.authenticated;
+      notifyListeners();
+    }
   }
 
   Future<void> refreshVerification() async {

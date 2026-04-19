@@ -12,17 +12,30 @@ enum ExerciseType {
   // 1. Trimester
   oturanKediInek,
   yanVucutEstretme,
+  kolayPozBoyun,
+  igneIpliktenGecirme,
   asagiBakanKopek,
+  alcakHamle,
+  ucgenDurusuDegistirilmis,
+  oturarakOneKatlanmaGenis,
   tersSavasci,
   // 2. Trimester
+  dagDurusuKolCevirme,
   sandakyeDurusu,
-  tanricaComelmesi,
-  genisBacakliOneEgilme,
+  savasci1,
   tersSavasci2,
+  genisBacakliOneEgilme,
+  tanricaComelmesi,
+  yanAciPozu,
   // 3. Trimester
+  boyunOmuzHareketleri,
+  destekYastigiNefes,
+  oturarakYanlaraEsneme,
   dizlerAcikCocukPozu,
   destekliComelme,
+  dortluEsneme,
   topUzerindeKalcaDaireleri,
+  duvaraDestekliKopek,
   duvara,
 }
 
@@ -44,25 +57,38 @@ class ExerciseData {
 
 String exerciseImagePath(ExerciseType type) {
   switch (type) {
-    case ExerciseType.bow:                      return 'assets/exercises/bow.jpeg';
-    case ExerciseType.recliningGoddess:         return 'assets/exercises/reclining_goddess.jpeg';
-    case ExerciseType.legsUpWall:               return 'assets/exercises/legs_up_wall.jpeg';
-    case ExerciseType.camel:                    return 'assets/exercises/camel.jpeg';
-    case ExerciseType.downDog:                  return 'assets/exercises/down_dog.jpeg';
-    case ExerciseType.child:                    return 'assets/exercises/child.jpeg';
-    case ExerciseType.butterfly:                return 'assets/exercises/butterfly.jpeg';
-    case ExerciseType.oturanKediInek:           return 'assets/exercises/oturan_kedi_inek.jpeg';
-    case ExerciseType.yanVucutEstretme:         return 'assets/exercises/yan_vücut_esnetme.jpeg';
-    case ExerciseType.asagiBakanKopek:          return 'assets/exercises/asagı_bakan_köpek.jpeg';
+    case ExerciseType.bow:                      return 'assets/exercises/yay_pozu.png';
+    case ExerciseType.recliningGoddess:         return 'assets/exercises/yatarak_tanrica_pozu.png';
+    case ExerciseType.legsUpWall:               return 'assets/exercises/bacaklar_duvarda_pozu.png';
+    case ExerciseType.camel:                    return 'assets/exercises/deve_pozu.png';
+    case ExerciseType.downDog:                  return 'assets/exercises/asagi_bakan_kopek_pozu.png';
+    case ExerciseType.child:                    return 'assets/exercises/cocuk_pozu.png';
+    case ExerciseType.butterfly:                return 'assets/exercises/kelebek_pozu.png';
+    case ExerciseType.oturanKediInek:           return 'assets/exercises/oturan_kedi_inek.png';
+    case ExerciseType.yanVucutEstretme:         return 'assets/exercises/yan_vucut_esnetme.png';
+    case ExerciseType.kolayPozBoyun:            return 'assets/exercises/kolay_poz_boyun.png';
+    case ExerciseType.igneIpliktenGecirme:      return 'assets/exercises/igne_iplikten_gecirme.png';
+    case ExerciseType.asagiBakanKopek:          return 'assets/exercises/asagi_bakan_kopek_dizler_bukulmus.png';
+    case ExerciseType.alcakHamle:               return 'assets/exercises/alcak_hamle.png';
+    case ExerciseType.ucgenDurusuDegistirilmis: return 'assets/exercises/ucgen_durusu_degistirilmis.png';
+    case ExerciseType.oturarakOneKatlanmaGenis: return 'assets/exercises/oturarak_one_katlanma_genis_bacakli.png';
     case ExerciseType.tersSavasci:              return 'assets/exercises/ters_savascı.jpeg';
-    case ExerciseType.sandakyeDurusu:           return 'assets/exercises/sandalye_durusu.jpeg';
-    case ExerciseType.tanricaComelmesi:         return 'assets/exercises/tanrıca_cömelmesi.jpeg';
-    case ExerciseType.genisBacakliOneEgilme:    return 'assets/exercises/genis_bacaklı_öne_eğilme.jpeg';
-    case ExerciseType.tersSavasci2:             return 'assets/exercises/ters_savascı-2.jpeg';
-    case ExerciseType.dizlerAcikCocukPozu:      return 'assets/exercises/dizler_acık_cocuk_pozu.jpeg';
-    case ExerciseType.destekliComelme:          return 'assets/exercises/destekli_cömelme.jpeg';
-    case ExerciseType.topUzerindeKalcaDaireleri:return 'assets/exercises/top_üzerinde_kalca_daireleri.jpeg';
-    case ExerciseType.duvara:                   return 'assets/exercises/duvara.jpeg';
+    case ExerciseType.dagDurusuKolCevirme:      return 'assets/exercises/dag_durusu_kol_cevirme.png';
+    case ExerciseType.sandakyeDurusu:           return 'assets/exercises/sandalye_durusu.png';
+    case ExerciseType.savasci1:                 return 'assets/exercises/savasci_1.png';
+    case ExerciseType.tersSavasci2:             return 'assets/exercises/savasci_2_ters_savasciya.png';
+    case ExerciseType.genisBacakliOneEgilme:    return 'assets/exercises/genis_bacakli_one_katlanma.png';
+    case ExerciseType.tanricaComelmesi:         return 'assets/exercises/tanrica_comelmesi.png';
+    case ExerciseType.yanAciPozu:               return 'assets/exercises/yan_aci_pozu.png';
+    case ExerciseType.boyunOmuzHareketleri:     return 'assets/exercises/boyun_omuz_hareketleri.png';
+    case ExerciseType.destekYastigiNefes:       return 'assets/exercises/destek_yastigi_nefes.png';
+    case ExerciseType.oturarakYanlaraEsneme:    return 'assets/exercises/oturarak_yanlara_esneme.png';
+    case ExerciseType.dizlerAcikCocukPozu:      return 'assets/exercises/dizler_genis_cocuk_pozu.png';
+    case ExerciseType.destekliComelme:          return 'assets/exercises/destekli_comelme_duvar.png';
+    case ExerciseType.dortluEsneme:             return 'assets/exercises/dortlu_esneme.png';
+    case ExerciseType.topUzerindeKalcaDaireleri:return 'assets/exercises/top_kalca_cevirme.png';
+    case ExerciseType.duvaraDestekliKopek:      return 'assets/exercises/duvara_destekli_kopek.png';
+    case ExerciseType.duvara:                   return 'assets/exercises/duvara_destekli_kopek.png';
   }
 }
 
